@@ -54,11 +54,6 @@ export default class SignUp extends React.Component {
               placeholder="Email"
             />
             <div>
-              {this.props.userExists ? (
-                <small>
-                  Username already exists, please enter a different one above
-                </small>
-              ) : null}
               <input
                 onChange={this.handleChange}
                 name="username"
