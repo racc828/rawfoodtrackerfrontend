@@ -31,7 +31,7 @@ export default class SignUp extends React.Component {
   render() {
     const { errorMessage } = this.props;
     return (
-      <div className="user-form-container">
+      <div className="user-form">
         <form id="sign-up" onSubmit={this.handleSubmit}>
           <h1>Sign Up</h1>
           <div className="user-form-input">

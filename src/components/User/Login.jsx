@@ -28,7 +28,7 @@ export default class Login extends React.Component {
   render() {
     const { handleSignUpClick, errorMessage } = this.props;
     return (
-      <div className="user-form-container">
+      <div className="user-form">
         <form id="user-login" onSubmit={this.handleSubmit}>
           <h1>Login</h1>
 
