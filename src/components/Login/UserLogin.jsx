@@ -18,12 +18,12 @@ export default class UserLogin extends React.Component {
   };
 
   render() {
-    const { getUser, createUser } = this.props;
+    const { getUser, createUser, errorMessage } = this.props;
     const { signUp } = this.state;
     return (
       <div>
         {signUp ? (
-          <SignUp createUser={createUser} />
+          <SignUp errorMessage={errorMessage} createUser={createUser} />
         ) : (
           <Login handleSignUpClick={this.handleSignUpClick} getUser={getUser} />
         )}
@@ -35,4 +35,5 @@ export default class UserLogin extends React.Component {
 UserLogin.propTypes = {
   getUser: PropTypes.func,
   createUser: PropTypes.func,
+  errorMessage: PropTypes.string,
 };

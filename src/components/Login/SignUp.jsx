@@ -29,6 +29,7 @@ export default class SignUp extends React.Component {
   };
 
   render() {
+    const { errorMessage } = this.props;
     return (
       <div>
         <div>
@@ -72,6 +73,7 @@ export default class SignUp extends React.Component {
               placeholder="Password"
             />
             <button type="submit">Sign Up</button>
+            {errorMessage && <span> {errorMessage}</span>}
           </form>
         </div>
       </div>
@@ -81,4 +83,5 @@ export default class SignUp extends React.Component {
 
 SignUp.propTypes = {
   createUser: PropTypes.func,
+  errorMessage: PropTypes.string,
 };

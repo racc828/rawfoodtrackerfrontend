@@ -10,6 +10,7 @@ class App extends Component {
     super();
     this.state = {
       currentUser: null,
+      errorMessage: null,
     };
   }
 
@@ -32,9 +33,10 @@ class App extends Component {
 
   createUser = (user) => {
     return UsersAdapter.createUser(user).then((userData) => {
+      debugger; // eslint-disable-line
       if (userData.error) {
         this.setState({
-          userExists: true,
+          errorMessage: userData.error,
         });
       } else {
         this.setState({
@@ -61,7 +63,14 @@ class App extends Component {
   };
 
   renderLogin = () => {
-    return <UserLogin getUser={this.getUser} createUser={this.createUser} />;
+    const { errorMessage } = this.state;
+    return (
+      <UserLogin
+        errorMessage={errorMessage}
+        getUser={this.getUser}
+        createUser={this.createUser}
+      />
+    );
   };
 
   render() {
