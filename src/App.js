@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import UserLogin from "./components/Login/UserLogin";
+import User from "./components/User/User";
 import SessionsAdapter from "./adapters/SessionsAdapter";
 import UsersAdapter from "./adapters/UsersAdapter";
 import { Route } from "react-router-dom";
@@ -74,7 +74,7 @@ class App extends Component {
   renderLogin = () => {
     const { errorMessage } = this.state;
     return (
-      <UserLogin
+      <User
         errorMessage={errorMessage}
         getUser={this.getUser}
         createUser={this.createUser}

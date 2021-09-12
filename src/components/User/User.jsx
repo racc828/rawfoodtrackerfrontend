@@ -3,7 +3,7 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import PropTypes from "prop-types";
 
-export default class UserLogin extends React.Component {
+export default class User extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -36,7 +36,7 @@ export default class UserLogin extends React.Component {
   }
 }
 
-UserLogin.propTypes = {
+User.propTypes = {
   getUser: PropTypes.func,
   createUser: PropTypes.func,
   errorMessage: PropTypes.string,
