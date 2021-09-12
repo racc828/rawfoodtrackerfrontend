@@ -31,46 +31,58 @@ export default class SignUp extends React.Component {
   render() {
     const { errorMessage } = this.props;
     return (
-      <div>
-        <div>
-          <form id="sign-up" onSubmit={this.handleSubmit}>
-            <h1>Sign Up</h1>
+      <div className="user-form-container">
+        <form id="sign-up" onSubmit={this.handleSubmit}>
+          <h1>Sign Up</h1>
+          <div className="user-form-input">
             <input
               onChange={this.handleChange}
               name="firstname"
               type="text"
               placeholder="First Name"
             />
+          </div>
+          <div className="user-form-input">
             <input
               onChange={this.handleChange}
               name="lastname"
               type="text"
               placeholder="Last Name"
             />
+          </div>
+          <div className="user-form-input">
             <input
               onChange={this.handleChange}
               name="email"
               type="email"
               placeholder="Email"
             />
-            <div>
-              <input
-                onChange={this.handleChange}
-                name="username"
-                type="text"
-                placeholder="Username"
-              />
-            </div>
+          </div>
+
+          <div className="user-form-input">
+            <input
+              onChange={this.handleChange}
+              name="username"
+              type="text"
+              placeholder="Username"
+            />
+          </div>
+          <div className="user-form-input">
             <input
               onChange={this.handleChange}
               name="password"
               type="password"
               placeholder="Password"
             />
-            <button type="submit">Sign Up</button>
-            {errorMessage && <span> {errorMessage}</span>}
-          </form>
-        </div>
+          </div>
+
+          <button type="submit">Sign Up</button>
+          {errorMessage && (
+            <div className="user-form-error">
+              <span> {errorMessage}</span>
+            </div>
+          )}
+        </form>
       </div>
     );
   }

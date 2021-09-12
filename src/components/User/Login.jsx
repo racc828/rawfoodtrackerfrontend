@@ -28,11 +28,11 @@ export default class Login extends React.Component {
   render() {
     const { handleSignUpClick, errorMessage } = this.props;
     return (
-      <div>
+      <div className="user-form-container">
         <form id="user-login" onSubmit={this.handleSubmit}>
           <h1>Login</h1>
 
-          <div>
+          <div className="user-form-input">
             <input
               type="text"
               onChange={this.handleChange}
@@ -43,7 +43,7 @@ export default class Login extends React.Component {
             />
           </div>
 
-          <div>
+          <div className="user-form-input">
             <input
               type="password"
               onChange={this.handleChange}
@@ -55,7 +55,11 @@ export default class Login extends React.Component {
             />
           </div>
           <button type="submit">Login</button>
-          {errorMessage && <span>{errorMessage}</span>}
+          {errorMessage && (
+            <div className="user-form-error">
+              <span> {errorMessage}</span>
+            </div>
+          )}
         </form>
         <button onClick={handleSignUpClick}>Sign up</button>
       </div>
