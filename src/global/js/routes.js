@@ -10,10 +10,15 @@ const methods = {
 
 const token = localStorage.getItem("token");
 
-const headers = {
+const authorizedHeaders = {
   Accept: "application/json",
   "Content-Type": "application/json",
   Authorization: `${token}`,
+};
+
+const headers = {
+  Accept: "application/json",
+  "Content-Type": "application/json",
 };
 
 export const apis = {
@@ -27,12 +32,21 @@ export const routes = {
       signIn: () => ({
         url: `${rootUrl}/sessions`,
         method: methods.POST,
-        headers: headers,
+        headers: authorizedHeaders,
       }),
       currentUser: () => ({
         url: `${rootUrl}/sessions/current_user`,
         method: methods.GET,
-        headers: headers,
+        headers: authorizedHeaders,
+      }),
+    },
+  },
+  [apis.Users]: {
+    endpoints: {
+      createUser: () => ({
+        url: `${rootUrl}/users`,
+        method: methods.POST,
+        headers,
       }),
     },
   },

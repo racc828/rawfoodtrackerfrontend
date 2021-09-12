@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default class Login extends React.Component {
   constructor() {
@@ -18,18 +19,20 @@ export default class Login extends React.Component {
   };
 
   handleSubmit = (e) => {
+    const { getUser } = this.props;
     e.preventDefault();
     let user = this.state;
-    this.props.getUser(user);
+    getUser(user);
   };
 
   render() {
+    const { handleSignUpClick } = this.props;
     return (
-      <div className="login-container text-center">
+      <div>
         <form id="user-login" onSubmit={this.handleSubmit}>
           <h1>Login</h1>
 
-          <div className="text-field-container">
+          <div>
             <input
               type="text"
               onChange={this.handleChange}
@@ -40,7 +43,7 @@ export default class Login extends React.Component {
             />
           </div>
 
-          <div className="text-field-container">
+          <div>
             <input
               type="password"
               onChange={this.handleChange}
@@ -51,11 +54,15 @@ export default class Login extends React.Component {
               required
             />
           </div>
-          <button type="submit" className="button-primary">
-            Login
-          </button>
+          <button type="submit">Login</button>
         </form>
+        <button onClick={handleSignUpClick}>Sign up</button>
       </div>
     );
   }
 }
+
+Login.propTypes = {
+  handleSignUpClick: PropTypes.func,
+  getUser: PropTypes.func,
+};

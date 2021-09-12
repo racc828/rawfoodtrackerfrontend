@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Login from "./components/Login";
+import UserLogin from "./components/Login/UserLogin";
 import SessionsAdapter from "./adapters/SessionsAdapter";
+import UsersAdapter from "./adapters/UsersAdapter";
 import { Route } from "react-router-dom";
 import Home from "./components/Home";
 
@@ -8,7 +9,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      currentUser: {},
+      currentUser: null,
     };
   }
 
@@ -29,14 +30,38 @@ class App extends Component {
     });
   };
 
+  createUser = (user) => {
+    return UsersAdapter.createUser(user).then((userData) => {
+      if (userData.error) {
+        this.setState({
+          userExists: true,
+        });
+      } else {
+        this.setState({
+          currentUser: userData,
+          userExists: false,
+        });
+        localStorage.setItem("token", userData.jwt);
+      }
+    });
+  };
+
+  logOut = () => {
+    localStorage.token = "";
+    this.setState({
+      currentUser: null,
+      dropdown: false,
+    });
+  };
+
   renderHome = () => {
     const { currentUser } = this.state;
 
-    return <Home currentUser={currentUser} />;
+    return <Home currentUser={currentUser} logOut={this.logOut} />;
   };
 
   renderLogin = () => {
-    return <Login getUser={this.getUser} />;
+    return <UserLogin getUser={this.getUser} createUser={this.createUser} />;
   };
 
   render() {
@@ -44,7 +69,7 @@ class App extends Component {
 
     return (
       <div className="app">
-        {!currentUser.error ? (
+        {currentUser && !currentUser.error ? (
           <Route exact path="/" render={this.renderHome} />
         ) : (
           <Route exact path="/" render={this.renderLogin} />
