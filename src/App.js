@@ -1,25 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Login from "./components/Login";
+import SessionsAdapter from "./adapters/SessionsAdapter";
+import { Route } from "react-router-dom";
+import Home from "./components/Home";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      currentUser: {},
+    };
+  }
+
+  componentDidMount() {
+    SessionsAdapter.currentUser().then((data) => {
+      this.setState({
+        currentUser: data,
+      });
+    });
+  }
+
+  getUser = (user) => {
+    return SessionsAdapter.getUser(user).then((userData) => {
+      this.setState({
+        currentUser: userData,
+      });
+      localStorage.setItem("token", userData.jwt);
+    });
+  };
+
+  renderHome = () => {
+    const { currentUser } = this.state;
+
+    return <Home currentUser={currentUser} />;
+  };
+
+  renderLogin = () => {
+    return <Login getUser={this.getUser} />;
+  };
+
+  render() {
+    const { currentUser } = this.state;
+
+    return (
+      <div className="app">
+        {!currentUser.error ? (
+          <Route exact path="/" render={this.renderHome} />
+        ) : (
+          <Route exact path="/" render={this.renderLogin} />
+        )}
+      </div>
+    );
+  }
 }
 
 export default App;
