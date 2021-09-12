@@ -24,24 +24,32 @@ class App extends Component {
 
   getUser = (user) => {
     return SessionsAdapter.getUser(user).then((userData) => {
-      this.setState({
-        currentUser: userData,
-      });
-      localStorage.setItem("token", userData.jwt);
-    });
-  };
-
-  createUser = (user) => {
-    return UsersAdapter.createUser(user).then((userData) => {
-      debugger; // eslint-disable-line
       if (userData.error) {
         this.setState({
+          currentUser: null,
           errorMessage: userData.error,
         });
       } else {
         this.setState({
           currentUser: userData,
-          userExists: false,
+          errorMessage: null,
+        });
+        localStorage.setItem("token", userData.jwt);
+      }
+    });
+  };
+
+  createUser = (user) => {
+    return UsersAdapter.createUser(user).then((userData) => {
+      if (userData.error) {
+        this.setState({
+          currentUser: null,
+          errorMessage: userData.error,
+        });
+      } else {
+        this.setState({
+          currentUser: userData,
+          errorMessage: null,
         });
         localStorage.setItem("token", userData.jwt);
       }
@@ -52,7 +60,7 @@ class App extends Component {
     localStorage.token = "";
     this.setState({
       currentUser: null,
-      dropdown: false,
+      errorMessage: null,
     });
   };
 

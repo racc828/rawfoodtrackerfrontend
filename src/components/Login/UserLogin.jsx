@@ -25,7 +25,11 @@ export default class UserLogin extends React.Component {
         {signUp ? (
           <SignUp errorMessage={errorMessage} createUser={createUser} />
         ) : (
-          <Login handleSignUpClick={this.handleSignUpClick} getUser={getUser} />
+          <Login
+            errorMessage={errorMessage}
+            handleSignUpClick={this.handleSignUpClick}
+            getUser={getUser}
+          />
         )}
       </div>
     );

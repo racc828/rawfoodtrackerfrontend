@@ -26,7 +26,7 @@ export default class Login extends React.Component {
   };
 
   render() {
-    const { handleSignUpClick } = this.props;
+    const { handleSignUpClick, errorMessage } = this.props;
     return (
       <div>
         <form id="user-login" onSubmit={this.handleSubmit}>
@@ -55,6 +55,7 @@ export default class Login extends React.Component {
             />
           </div>
           <button type="submit">Login</button>
+          {errorMessage && <span>{errorMessage}</span>}
         </form>
         <button onClick={handleSignUpClick}>Sign up</button>
       </div>
@@ -65,4 +66,5 @@ export default class Login extends React.Component {
 Login.propTypes = {
   handleSignUpClick: PropTypes.func,
   getUser: PropTypes.func,
+  errorMessage: PropTypes.string,
 };
