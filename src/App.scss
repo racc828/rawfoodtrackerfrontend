@@ -14,11 +14,13 @@ h6 {
   font-family: "Raleway", sans-serif;
 }
 
-.user-form-container {
+.user-form {
   width: 600px;
   margin: 0 auto;
-}
 
-.user-form-input input {
-  width: 100%;
+  &-input {
+    input {
+      width: 100%;
+    }
+  }
 }
