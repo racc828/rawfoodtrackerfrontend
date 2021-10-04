@@ -1,3 +1,5 @@
+@import "../variables";
+
 .button {
   display: inline-block;
   width: auto;
@@ -7,19 +9,14 @@
   cursor: pointer;
   color: #fff;
   border-radius: 5px;
+  border: 2px solid $deep-red;
 
   &-secondary {
-    border: 3px solid #a90329;
-    color: #a90329;
-    background: #fff;
+    color: $deep-red;
+    background: $white;
   }
 
   &-primary {
-    background: linear-gradient(
-      to bottom,
-      #a90329 0%,
-      #8f0222 44%,
-      #6d0019 100%
-    );
+    background: $deep-red;
   }
 }

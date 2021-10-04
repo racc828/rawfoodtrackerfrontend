@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "./Button/Button";
-import ProteinForm from './Forms/ProteinForm'
+import ProteinForm from "./Forms/ProteinForm";
+import MeatForm from "./Forms/MeatForm";
+import Navigation from "./User/Navigation";
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -25,27 +26,28 @@ export default class Home extends React.Component {
     });
   };
 
+  toggleMeatForm = () => {
+    const { displayMeatForm } = this.state;
+    this.setState({
+      displayMeatForm: !displayMeatForm,
+    });
+  };
+
   render() {
     const { currentUser, logOut } = this.props;
-    const { admin, displayProteinForm } = this.state;
+    const { admin, displayProteinForm, displayMeatForm } = this.state;
     return (
       <div>
-        <p>hello {currentUser.firstname}</p>
-        {admin && (
-          <Button
-            text="Add Protein"
-            onClick={this.toggleProteinForm}
-            className="button button-secondary"
-          ></Button>
-        )}
-
-        <Button
-          text="Logout"
-          onClick={logOut}
-          className="button button-primary"
-        ></Button>
+        <Navigation
+          currentUser={currentUser}
+          admin={admin}
+          logOut={logOut}
+          toggleProteinForm={this.toggleProteinForm}
+          toggleMeatForm={this.toggleMeatForm}
+        />
 
         {displayProteinForm && <ProteinForm />}
+        {displayMeatForm && <MeatForm />}
       </div>
     );
   }

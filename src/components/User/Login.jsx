@@ -38,7 +38,6 @@ export default class Login extends React.Component {
               onChange={this.handleChange}
               name="username"
               label="username"
-              variant="filled"
               required
             />
           </div>
@@ -50,7 +49,6 @@ export default class Login extends React.Component {
               label="password"
               type="password"
               name="password"
-              variant="filled"
               required
             />
           </div>

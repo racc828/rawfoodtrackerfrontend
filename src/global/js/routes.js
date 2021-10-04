@@ -25,6 +25,7 @@ export const apis = {
   Users: "users",
   Sessions: "sessions",
   Proteins: "proteins",
+  Meats: "meats",
 };
 
 export const routes = {
@@ -60,6 +61,15 @@ export const routes = {
       }),
       createProtein: () => ({
         url: `${rootUrl}/proteins`,
+        method: methods.POST,
+        headers,
+      }),
+    },
+  },
+  [apis.Meats]: {
+    endpoints: {
+      createMeat: () => ({
+        url: `${rootUrl}/meats`,
         method: methods.POST,
         headers,
       }),
