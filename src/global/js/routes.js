@@ -56,7 +56,12 @@ export const routes = {
       getProteins: () => ({
         url: `${rootUrl}/proteins`,
         method: methods.GET,
-        headers
+        headers,
+      }),
+      createProtein: () => ({
+        url: `${rootUrl}/proteins`,
+        method: methods.POST,
+        headers,
       }),
     },
   },

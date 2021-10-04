@@ -9,7 +9,19 @@ export default class ProteinsAdapter {
     return fetch(endpoint.url, {
       method: endpoint.method,
       headers: endpoint.headers,
-      body: JSON.stringify(user),
     }).then((resp) => resp.json());
+  }
+
+  static createProtein(protein) {
+    const endpoint = currentRoute.endpoints.createProtein();
+    debugger; // eslint-disable-line
+    return fetch(endpoint.url, {
+      method: endpoint.method,
+      headers: endpoint.headers,
+      body: JSON.stringify({
+        name: protein.name,
+      }),
+    }).then((resp) => resp.json());
+    // localStorage.setItem("token", user.jwt);
   }
 }

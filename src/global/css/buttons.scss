@@ -5,8 +5,21 @@
   letter-spacing: 1px;
   border-style: none;
   cursor: pointer;
+  color: #fff;
+  border-radius: 5px;
+
+  &-secondary {
+    border: 3px solid #a90329;
+    color: #a90329;
+    background: #fff;
+  }
 
   &-primary {
-    background: linear-gradient(135deg, #00efd0 30%, #00d9fd 90%);
+    background: linear-gradient(
+      to bottom,
+      #a90329 0%,
+      #8f0222 44%,
+      #6d0019 100%
+    );
   }
 }

@@ -28,11 +28,11 @@ export default class Login extends React.Component {
   render() {
     const { handleSignUpClick, errorMessage } = this.props;
     return (
-      <div className="user-form">
+      <div className="form">
         <form id="user-login" onSubmit={this.handleSubmit}>
           <h1>Login</h1>
 
-          <div className="user-form-input">
+          <div className="form-input">
             <input
               type="text"
               onChange={this.handleChange}
@@ -43,7 +43,7 @@ export default class Login extends React.Component {
             />
           </div>
 
-          <div className="user-form-input">
+          <div className="form-input">
             <input
               type="password"
               onChange={this.handleChange}
