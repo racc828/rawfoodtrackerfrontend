@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Button from "../Button/Button";
 
 export default class SignUp extends React.Component {
   constructor() {
@@ -76,7 +77,11 @@ export default class SignUp extends React.Component {
             />
           </div>
 
-          <button type="submit">Sign Up</button>
+          <Button
+            type="submit"
+            classNamer="button button-primary"
+            text="Sign Up"
+          ></Button>
           {errorMessage && (
             <div className="user-form-error">
               <span> {errorMessage}</span>

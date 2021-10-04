@@ -1,10 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Button from "./Button/Button";
 
 const Home = ({ logOut, currentUser }) => {
   return (
     <div>
-      hello {currentUser.firstname} <button onClick={logOut}>logout</button>
+      <p>hello {currentUser.firstname}</p>
+      <Button
+        text="Logout"
+        onClick={logOut}
+        className="button button-primary"
+      ></Button>
     </div>
   );
 };

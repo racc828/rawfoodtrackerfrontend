@@ -1,0 +1,12 @@
+.button {
+  display: inline-block;
+  width: auto;
+  padding: 10px 20px;
+  letter-spacing: 1px;
+  border-style: none;
+  cursor: pointer;
+
+  &-primary {
+    background: linear-gradient(135deg, #00efd0 30%, #00d9fd 90%);
+  }
+}

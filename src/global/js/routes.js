@@ -24,6 +24,7 @@ const headers = {
 export const apis = {
   Users: "users",
   Sessions: "sessions",
+  Proteins: "proteins",
 };
 
 export const routes = {
@@ -47,6 +48,15 @@ export const routes = {
         url: `${rootUrl}/users`,
         method: methods.POST,
         headers,
+      }),
+    },
+  },
+  [apis.Proteins]: {
+    endpoints: {
+      getProteins: () => ({
+        url: `${rootUrl}/proteins`,
+        method: methods.GET,
+        headers
       }),
     },
   },
