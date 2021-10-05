@@ -13,7 +13,6 @@ export default class DailyPortionForm extends React.Component {
       secretingOrgan: null,
       nut: null,
       fruit: null,
-      pet_id: 1,
     };
   }
 
@@ -29,7 +28,8 @@ export default class DailyPortionForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    let portion = this.state;
+    const { petId } = this.props;
+    let portion = { ...this.state, petId };
     PortionsAdapter.createPortion(portion).then((portionData) => {
       if (portionData.error) {
         alert(portionData.error);

@@ -14,7 +14,6 @@ export default class ProteinsAdapter {
 
   static createProtein(protein) {
     const endpoint = currentRoute.endpoints.createProtein();
-    debugger; // eslint-disable-line
     return fetch(endpoint.url, {
       method: endpoint.method,
       headers: endpoint.headers,
