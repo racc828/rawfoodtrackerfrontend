@@ -12,7 +12,7 @@ const Navigation = ({
 }) => {
   return (
     <nav>
-      <p>hello {currentUser.firstname}</p>
+      {currentUser.firstname}
       {admin && (
         <React.Fragment>
           <Button

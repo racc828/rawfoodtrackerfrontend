@@ -26,6 +26,7 @@ export const apis = {
   Sessions: "sessions",
   Proteins: "proteins",
   Meats: "meats",
+  Portions: "portions",
 };
 
 export const routes = {
@@ -71,6 +72,24 @@ export const routes = {
       createMeat: () => ({
         url: `${rootUrl}/meats`,
         method: methods.POST,
+        headers,
+      }),
+    },
+  },
+  [apis.Portions]: {
+    endpoints: {
+      createPortion: () => ({
+        url: `${rootUrl}/portions`,
+        method: methods.POST,
+        headers,
+      }),
+    },
+  },
+  [apis.Pets]: {
+    endpoints: {
+      getPet: () => ({
+        url: `${rootUrl}/pets`,
+        method: methods.GET,
         headers,
       }),
     },

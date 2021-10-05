@@ -3,7 +3,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import "../../global/css/buttons.scss";
 
-const Button = ({ className, text, type, onClick }) => {
+const Button = ({ className, text, type, onClick, id }) => {
   const buttonType = type ? type : "button";
   return (
     <button
@@ -11,6 +11,7 @@ const Button = ({ className, text, type, onClick }) => {
       onClick={onClick}
       type={type}
       className={classNames(className)}
+      data-id={id}
     >
       {text}
     </button>
@@ -24,4 +25,5 @@ Button.propTypes = {
   text: PropTypes.string,
   type: PropTypes.string,
   onClick: PropTypes.func,
+  id: PropTypes.number,
 };

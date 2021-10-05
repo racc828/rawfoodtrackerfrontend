@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import ProteinForm from "./Forms/ProteinForm";
 import MeatForm from "./Forms/MeatForm";
 import Navigation from "./User/Navigation";
+import Button from "../components/Button/Button";
+import PetContainer from "../components/Pet/PetContainer";
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -16,6 +18,7 @@ export default class Home extends React.Component {
           : false,
       displayProteinForm: false,
       displayMeatForm: false,
+      activePet: null,
     };
   }
 
@@ -33,9 +36,16 @@ export default class Home extends React.Component {
     });
   };
 
+  setActivePet = (e) => {
+    this.setState({
+      activePet: e.target.dataset.id,
+    });
+  };
+
   render() {
     const { currentUser, logOut } = this.props;
-    const { admin, displayProteinForm, displayMeatForm } = this.state;
+    const { admin, displayProteinForm, displayMeatForm, activePet } =
+      this.state;
     return (
       <div>
         <Navigation
@@ -48,6 +58,18 @@ export default class Home extends React.Component {
 
         {displayProteinForm && <ProteinForm />}
         {displayMeatForm && <MeatForm />}
+        {currentUser.pets.map((pet, i) => {
+          return (
+            <Button
+              classsName="button button-secondary"
+              text={pet.name}
+              key={i}
+              id={pet.id}
+              onClick={this.setActivePet}
+            />
+          );
+        })}
+        {activePet && <PetContainer petId={activePet} />}
       </div>
     );
   }
