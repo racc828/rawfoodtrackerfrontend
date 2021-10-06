@@ -21,6 +21,14 @@ export default class PetContainer extends React.Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    PetsAdapter.getPet(nextProps.petId).then((data) => {
+      this.setState({
+        petData: data,
+      });
+    });
+  }
+
   handleSignUpClick = () => {
     this.setState({
       signUp: true,

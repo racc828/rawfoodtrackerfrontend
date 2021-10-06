@@ -92,6 +92,11 @@ export const routes = {
         method: methods.GET,
         headers,
       }),
+      createPet: () => ({
+        url: `${rootUrl}/pets`,
+        method: methods.POST,
+        headers,
+      }),
     },
   },
 };

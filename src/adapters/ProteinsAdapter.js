@@ -21,6 +21,5 @@ export default class ProteinsAdapter {
         name: protein.name,
       }),
     }).then((resp) => resp.json());
-    // localStorage.setItem("token", user.jwt);
   }
 }

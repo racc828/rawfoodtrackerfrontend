@@ -9,6 +9,7 @@ const Navigation = ({
   toggleProteinForm,
   logOut,
   toggleMeatForm,
+  togglePetForm,
 }) => {
   return (
     <nav>
@@ -27,7 +28,11 @@ const Navigation = ({
           ></Button>
         </React.Fragment>
       )}
-
+      <Button
+        text="Add Pet"
+        onClick={togglePetForm}
+        className="button button-secondary"
+      ></Button>
       <Button
         text="Logout"
         onClick={logOut}
@@ -45,4 +50,5 @@ Navigation.propTypes = {
   toggleProteinForm: PropTypes.func,
   logOut: PropTypes.func,
   toggleMeatForm: PropTypes.func,
+  togglePetForm: PropTypes.func,
 };

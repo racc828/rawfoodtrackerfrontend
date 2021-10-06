@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import User from "./components/User/User";
 import SessionsAdapter from "./adapters/SessionsAdapter";
+import PetsAdapter from "./adapters/PetsAdapter";
 import UsersAdapter from "./adapters/UsersAdapter";
 import { Route } from "react-router-dom";
 import Home from "./components/Home";
@@ -65,10 +66,32 @@ class App extends Component {
     });
   };
 
+  handleAddPet = (pet) => {
+    const { currentUser } = this.state;
+    PetsAdapter.createPet(pet).then((petData) => {
+      if (petData.error) {
+        alert(petData.error);
+      } else {
+        this.setState({
+          currentUser: {
+            ...currentUser,
+            pets: [...currentUser.pets, petData],
+          },
+        });
+      }
+    });
+  };
+
   renderHome = () => {
     const { currentUser } = this.state;
 
-    return <Home currentUser={currentUser} logOut={this.logOut} />;
+    return (
+      <Home
+        currentUser={currentUser}
+        logOut={this.logOut}
+        handleAddPet={this.handleAddPet}
+      />
+    );
   };
 
   renderLogin = () => {

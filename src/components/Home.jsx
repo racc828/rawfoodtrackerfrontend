@@ -5,6 +5,8 @@ import MeatForm from "./Forms/MeatForm";
 import Navigation from "./User/Navigation";
 import Button from "../components/Button/Button";
 import PetContainer from "../components/Pet/PetContainer";
+import PetForm from "../components/Forms/PetForm";
+
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -19,6 +21,7 @@ export default class Home extends React.Component {
       displayProteinForm: false,
       displayMeatForm: false,
       activePet: null,
+      displayPetForm: false,
     };
   }
 
@@ -36,6 +39,13 @@ export default class Home extends React.Component {
     });
   };
 
+  togglePetForm = () => {
+    const { displayPetForm } = this.state;
+    this.setState({
+      displayPetForm: !displayPetForm,
+    });
+  };
+
   setActivePet = (e) => {
     this.setState({
       activePet: e.target.dataset.id,
@@ -43,9 +53,14 @@ export default class Home extends React.Component {
   };
 
   render() {
-    const { currentUser, logOut } = this.props;
-    const { admin, displayProteinForm, displayMeatForm, activePet } =
-      this.state;
+    const { currentUser, logOut, handleAddPet } = this.props;
+    const {
+      admin,
+      displayProteinForm,
+      displayMeatForm,
+      activePet,
+      displayPetForm,
+    } = this.state;
     return (
       <div>
         <Navigation
@@ -54,10 +69,9 @@ export default class Home extends React.Component {
           logOut={logOut}
           toggleProteinForm={this.toggleProteinForm}
           toggleMeatForm={this.toggleMeatForm}
+          togglePetForm={this.togglePetForm}
         />
 
-        {displayProteinForm && <ProteinForm />}
-        {displayMeatForm && <MeatForm />}
         {currentUser.pets.map((pet, i) => {
           return (
             <Button
@@ -69,6 +83,11 @@ export default class Home extends React.Component {
             />
           );
         })}
+        {displayProteinForm && <ProteinForm />}
+        {displayMeatForm && <MeatForm />}
+        {displayPetForm && (
+          <PetForm userId={currentUser.id} handleAddPet={handleAddPet} />
+        )}
         {activePet && <PetContainer petId={activePet} />}
       </div>
     );
@@ -78,4 +97,5 @@ export default class Home extends React.Component {
 Home.propTypes = {
   logOut: PropTypes.func,
   currentUser: PropTypes.object,
+  handleAddPet: PropTypes.func,
 };

@@ -11,4 +11,19 @@ export default class PetsAdapter {
       headers: endpoint.headers,
     }).then((resp) => resp.json());
   }
+
+  static createPet(pet) {
+    const endpoint = currentRoute.endpoints.createPet();
+    debugger; // eslint-disable-line
+    return fetch(endpoint.url, {
+      method: endpoint.method,
+      headers: endpoint.headers,
+      body: JSON.stringify({
+        name: pet.name,
+        breed: pet.breed,
+        age: parseInt(pet.age),
+        user_id: parseInt(pet.userId),
+      }),
+    }).then((resp) => resp.json());
+  }
 }
