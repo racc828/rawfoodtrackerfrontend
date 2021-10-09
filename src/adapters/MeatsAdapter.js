@@ -5,7 +5,6 @@ const currentRoute = routes[apis.Meats];
 export default class MeatsAdapter {
   static createMeat(meat) {
     const endpoint = currentRoute.endpoints.createMeat();
-    debugger; // eslint-disable-line
     return fetch(endpoint.url, {
       method: endpoint.method,
       headers: endpoint.headers,
@@ -15,6 +14,15 @@ export default class MeatsAdapter {
         bone: parseInt(meat.bone),
         protein_id: parseInt(meat.protein_id),
       }),
+    }).then((resp) => resp.json());
+  }
+
+  static getMeats() {
+    const endpoint = currentRoute.endpoints.getMeats();
+
+    return fetch(endpoint.url, {
+      method: endpoint.method,
+      headers: endpoint.headers,
     }).then((resp) => resp.json());
   }
 }

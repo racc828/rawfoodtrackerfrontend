@@ -63,6 +63,7 @@ export default class MeatForm extends React.Component {
               onChange={this.handleChange}
               name="name"
               label="name"
+              placeholder="name"
               required
             />
             <input
@@ -70,6 +71,7 @@ export default class MeatForm extends React.Component {
               onChange={this.handleChange}
               name="muscle"
               label="muscle"
+              placeholder="muscle"
               required
             />
             <input
@@ -77,6 +79,7 @@ export default class MeatForm extends React.Component {
               onChange={this.handleChange}
               name="bone"
               label="bone"
+              placeholder="bone"
               required
             />
             <select
@@ -84,6 +87,7 @@ export default class MeatForm extends React.Component {
               id="protein_id"
               onChange={this.handleChange}
             >
+              <option> Select a name</option>
               {proteins.map((protein) => {
                 return <option value={protein.id}> {protein.name}</option>;
               })}

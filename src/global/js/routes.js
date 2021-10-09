@@ -74,6 +74,11 @@ export const routes = {
         method: methods.POST,
         headers,
       }),
+      getMeats: () => ({
+        url: `${rootUrl}/meats`,
+        method: methods.GET,
+        headers,
+      }),
     },
   },
   [apis.Portions]: {

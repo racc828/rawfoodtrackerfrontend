@@ -38,11 +38,18 @@ export default class PetContainer extends React.Component {
   render() {
     const { petId } = this.props;
     const { petData } = this.state;
+
+    // prettier-ignore
+    console.log(`%cpetdata`, 'background: #FF1493; color: #fff; padding: 3px;', petData); // eslint-disable-line
+
     return (
       <div>
-        <div className="half">
-          <DailyPortionForm petId={petId} />
-        </div>
+        {petData && petData.portions && petData.portions.length === 0 && (
+          <div className="half">
+            <DailyPortionForm petId={petId} />
+          </div>
+        )}
+
         <div className="half">
           <DailyPortionContainer petData={petData} />
         </div>

@@ -1,8 +1,13 @@
 import React from "react";
 import Button from "../Button/Button";
+import PropTypes from "prop-types";
 import PortionsAdapter from "../../adapters/PortionsAdapter";
 
 export default class DailyPortionForm extends React.Component {
+  static propTypes = {
+    petId: PropTypes.string,
+  };
+
   constructor() {
     super();
     this.state = {
@@ -10,13 +15,11 @@ export default class DailyPortionForm extends React.Component {
       bone: null,
       vegetable: null,
       liver: null,
-      secretingOrgan: null,
+      organ: null,
       nut: null,
       fruit: null,
     };
   }
-
-  // TODO change pet id above
 
   handleChange = (e) => {
     let property = e.target.name;
@@ -26,17 +29,31 @@ export default class DailyPortionForm extends React.Component {
     });
   };
 
+  checkTotal = () => {
+    let total = 0;
+    Object.values(this.state).map((value) => {
+      total += parseInt(value);
+    });
+    return total;
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
     const { petId } = this.props;
     let portion = { ...this.state, petId };
-    PortionsAdapter.createPortion(portion).then((portionData) => {
-      if (portionData.error) {
-        alert(portionData.error);
-      } else {
-        alert("success");
-      }
-    });
+    const totalPercentage = this.checkTotal();
+
+    if (totalPercentage !== 100) {
+      alert("Those values do not equal 100%");
+    } else {
+      PortionsAdapter.createPortion(portion).then((portionData) => {
+        if (portionData.error) {
+          alert(portionData.error);
+        } else {
+          alert("success");
+        }
+      });
+    }
   };
 
   render() {
@@ -85,9 +102,9 @@ export default class DailyPortionForm extends React.Component {
             <input
               type="number"
               onChange={this.handleChange}
-              name="secretingOrgan"
-              label="secretingOrgan"
-              placeholder="secreting organs"
+              name="organ"
+              label="organ"
+              placeholder="organs"
               required
             />
 

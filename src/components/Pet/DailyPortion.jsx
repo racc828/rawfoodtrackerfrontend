@@ -1,41 +1,51 @@
 import React from "react";
+import { Chart } from "react-google-charts";
+import PropTypes from "prop-types";
 
 const DailyPortion = ({
   muscle,
   bone,
   vegetable,
   liver,
-  secretingOrgan,
+  organ,
   nut,
   fruit,
 }) => {
-  //TODO do this on BE
-  const portionData = {
-    muscle,
-    bone,
-    vegetable,
-    liver,
-    secretingOrgan,
-    nut,
-    fruit,
-  };
-
-  let total = 0;
   return (
     <div>
-      {Object.entries(portionData).map(([key, value], i) => {
-        total += value;
-        return (
-          <div key={i}>
-            {key} {value}
-          </div>
-        );
-      })}
-      {total}
+      <Chart
+        width={"800px"}
+        height={"400px"}
+        chartType="PieChart"
+        loader={<div>Loading Chart</div>}
+        backgroundColor={"red"}
+        data={[
+          ["Category", "Percentage"],
+          ["Muscle", muscle],
+          ["Bone", bone],
+          ["Vegetable", vegetable],
+          ["Liver", liver],
+          ["Organ", organ],
+          ["Nuts", nut],
+          ["Fruit", fruit],
+        ]}
+        options={{
+          title: "Portions",
+        }}
+        rootProps={{ "data-testid": "7" }}
+      />
     </div>
   );
 };
 
 export default DailyPortion;
 
-//TODO add proptypes
+DailyPortion.propTypes = {
+  muscle: PropTypes.number,
+  bone: PropTypes.number,
+  vegetable: PropTypes.number,
+  liver: PropTypes.number,
+  organ: PropTypes.number,
+  nut: PropTypes.number,
+  fruit: PropTypes.number,
+};
