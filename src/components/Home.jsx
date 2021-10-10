@@ -3,10 +3,9 @@ import PropTypes from "prop-types";
 import ProteinForm from "./Forms/ProteinForm";
 import MeatForm from "./Forms/MeatForm";
 import Navigation from "./User/Navigation";
-import Button from "../components/Button/Button";
 import PetContainer from "../components/Pet/PetContainer";
 import PetForm from "../components/Forms/PetForm";
-
+import PetNavigation from "./Pet/PetNavigation";
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -71,24 +70,23 @@ export default class Home extends React.Component {
           toggleMeatForm={this.toggleMeatForm}
           togglePetForm={this.togglePetForm}
         />
-
-        {currentUser.pets.map((pet, i) => {
-          return (
-            <Button
-              classsName="button button-secondary"
-              text={pet.name}
-              key={i}
-              id={pet.id}
-              onClick={this.setActivePet}
+        <div className="row">
+          <div className="one-third">
+            <PetNavigation
+              currentUser={currentUser}
+              setActivePet={this.setActivePet}
             />
-          );
-        })}
-        {displayProteinForm && <ProteinForm />}
-        {displayMeatForm && <MeatForm />}
-        {displayPetForm && (
-          <PetForm userId={currentUser.id} handleAddPet={handleAddPet} />
-        )}
-        {activePet && <PetContainer petId={activePet} />}
+          </div>
+
+          <div className="two-third">
+            {displayProteinForm && <ProteinForm />}
+            {displayMeatForm && <MeatForm />}
+            {displayPetForm && (
+              <PetForm userId={currentUser.id} handleAddPet={handleAddPet} />
+            )}
+            {activePet && <PetContainer petId={activePet} />}
+          </div>
+        </div>
       </div>
     );
   }

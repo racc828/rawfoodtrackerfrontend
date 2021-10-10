@@ -16,9 +16,32 @@ h6 {
   font-family: $raleway;
 }
 
+nav {
+  background: $light-blue;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
+    0 1px 5px 0 rgb(0 0 0 / 20%);
+  display: flex;
+  align-items: center;
+  padding: 10px 50px;
+  justify-content: space-between;
+}
+
 .half {
   width: 49%;
   display: inline-block;
+  vertical-align: top;
+}
+
+.one-third {
+  width: 33.333333%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.two-third {
+  width: 66.66666%;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .form {
@@ -42,5 +65,20 @@ h6 {
         border-bottom: 1px solid $deep-red;
       }
     }
+  }
+}
+
+.pet-navigation {
+  width: 200px;
+  border-right: 5px solid $light-blue;
+  height: 100vh;
+
+  button {
+    width: 100%;
+    background: none;
+    padding: 20px 10px;
+    border: none;
+    cursor: pointer;
+    border-bottom: 1px solid $light-blue;
   }
 }

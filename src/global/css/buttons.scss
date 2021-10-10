@@ -9,14 +9,13 @@
   cursor: pointer;
   color: #fff;
   border-radius: 5px;
-  border: 2px solid $deep-red;
-
+  border: 2px solid $light-blue;
   &-secondary {
-    color: $deep-red;
+    color: $light-blue;
     background: $white;
   }
 
   &-primary {
-    background: $deep-red;
+    background: $light-blue;
   }
 }

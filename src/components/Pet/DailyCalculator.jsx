@@ -21,6 +21,17 @@ export default class DailyCalculator extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const { bone, ounces } = this.state;
+    const portionData = { bone, ounces };
+    this.props.calculatePortion(portionData);
+  };
+
+  handleChange = (e) => {
+    let property = e.target.name;
+    let value = e.target.value;
+    this.setState({
+      [property]: value,
+    });
   };
 
   render() {
@@ -41,11 +52,11 @@ export default class DailyCalculator extends React.Component {
             />
           </div>
 
-          <select name="meat_id" id="meat_id" onChange={this.handleChange}>
+          <select name="bone" id="meat_id" onChange={this.handleChange}>
             <option> Select a meat</option>
-            {meats.map((meat) => {
+            {meats.map((meat, i) => {
               return (
-                <option value={meat.id}>
+                <option key={i} value={meat.bone}>
                   {meat.proteinName}
                   {meat.name}
                 </option>

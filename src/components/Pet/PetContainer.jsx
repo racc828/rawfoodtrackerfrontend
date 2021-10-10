@@ -51,7 +51,7 @@ export default class PetContainer extends React.Component {
         )}
 
         <div className="half">
-          <DailyPortionContainer petData={petData} />
+          <DailyPortionContainer petId={petId} />
         </div>
       </div>
     );

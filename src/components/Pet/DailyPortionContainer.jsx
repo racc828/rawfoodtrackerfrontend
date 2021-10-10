@@ -3,41 +3,78 @@ import PropTypes from "prop-types";
 import DailyPortion from "./DailyPortion";
 import DailyPortionData from "./DailyPortionData";
 import DailyCalculator from "./DailyCalculator";
+import PortionsAdapter from "../../adapters/PortionsAdapter";
 
 export default class DailyPortionContainer extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       dailyTotal: 32,
+      petPortionData: {},
+      calculatedPortions: {
+        boneContent: 0,
+        muscleContent: 0,
+      },
     };
   }
 
+  componentDidMount() {
+    const { petId } = this.props;
+    PortionsAdapter.getPetPortions(petId).then((data) => {
+      this.setState({
+        petPortionData: data,
+      });
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    PortionsAdapter.getPetPortions(nextProps.petId).then((data) => {
+      this.setState({
+        petPortionData: data,
+      });
+    });
+  }
+
+  calculatePortion = (portionData) => {
+    const boneContent = (portionData.ounces * portionData.bone) / 100;
+    const muscleContent = portionData.ounces - boneContent;
+
+    this.setState({
+      calculatedPortions: {
+        boneContent: (this.state.calculatedPortions.boneContent += boneContent),
+        muscleContent: (this.state.calculatedPortions.muscleContent +=
+          muscleContent),
+      },
+    });
+  };
+
   render() {
-    const { petData } = this.props;
-    const { dailyTotal } = this.state;
-    const portionDataObject = petData.portions ? petData.portions[0] : {};
+    const { dailyTotal, petPortionData, calculatedPortions } = this.state;
 
     return (
       <div>
-        {portionDataObject && <DailyPortion {...portionDataObject} />}
+        {petPortionData && <DailyPortion {...petPortionData} />}
         <div className="half">
-          {Object.entries(portionDataObject).map(([key, value], i) => {
-            if (key.includes("at") || key.includes("id")) {
-              return null;
-            } else {
-              return (
-                <DailyPortionData
-                  key={i}
-                  dailyTotal={dailyTotal}
-                  category={key}
-                  percentage={value}
-                />
-              );
-            }
-          })}
+          {petPortionData &&
+            Object.entries(petPortionData).map(([key, value], i) => {
+              if (key.includes("at") || key.includes("id")) {
+                return null;
+              } else {
+                return (
+                  <DailyPortionData
+                    calculatedPortions={calculatedPortions}
+                    key={i}
+                    dailyTotal={dailyTotal}
+                    category={key}
+                    percentage={value}
+                  />
+                );
+              }
+            })}
         </div>
+
         <div className="half">
-          <DailyCalculator />
+          <DailyCalculator calculatePortion={this.calculatePortion} />
         </div>
       </div>
     );
@@ -45,5 +82,5 @@ export default class DailyPortionContainer extends React.Component {
 }
 
 DailyPortionContainer.propTypes = {
-  petData: PropTypes.object,
+  petId: PropTypes.object,
 };
