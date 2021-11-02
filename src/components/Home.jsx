@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ProteinForm from "./Forms/ProteinForm";
 import MeatForm from "./Forms/MeatForm";
-import Navigation from "./User/Navigation";
+import Header from "./User/Header";
 import PetContainer from "../components/Pet/PetContainer";
 import PetForm from "../components/Forms/PetForm";
 import Sidebar from "./Sidebar/Sidebar";
@@ -65,21 +65,33 @@ export default class Home extends React.Component {
         <Sidebar currentUser={currentUser} setActivePet={this.setActivePet} />
 
         <div className="main-wrapper">
-          <Navigation
-            currentUser={currentUser}
-            admin={admin}
-            logOut={logOut}
-            toggleProteinForm={this.toggleProteinForm}
-            toggleMeatForm={this.toggleMeatForm}
-            togglePetForm={this.togglePetForm}
-          />
-
-          {displayProteinForm && <ProteinForm />}
-          {displayMeatForm && <MeatForm />}
-          {displayPetForm && (
-            <PetForm userId={currentUser.id} handleAddPet={handleAddPet} />
-          )}
-          {activePet && <PetContainer petId={activePet} />}
+          <div className="container">
+            <Header
+              currentUser={currentUser}
+              admin={admin}
+              logOut={logOut}
+              toggleProteinForm={this.toggleProteinForm}
+              toggleMeatForm={this.toggleMeatForm}
+              togglePetForm={this.togglePetForm}
+            />
+            <div className="row">
+              <div className="col-md-6">
+                <div className="card">
+                  <div className="card-body">
+                    {displayProteinForm && <ProteinForm />}
+                    {displayMeatForm && <MeatForm />}
+                    {displayPetForm && (
+                      <PetForm
+                        userId={currentUser.id}
+                        handleAddPet={handleAddPet}
+                      />
+                    )}
+                    {activePet && <PetContainer petId={activePet} />}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

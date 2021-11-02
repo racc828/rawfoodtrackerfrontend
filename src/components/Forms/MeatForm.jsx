@@ -53,54 +53,52 @@ export default class MeatForm extends React.Component {
   render() {
     const { proteins } = this.state;
     return (
-      <div className="form">
-        <form id="protein-form" onSubmit={this.handleSubmit}>
-          <h1>Add Meat</h1>
+      <form id="protein-form" onSubmit={this.handleSubmit}>
+        <h1>Add Meat</h1>
 
-          <div className="form-input">
-            <input
-              type="text"
-              onChange={this.handleChange}
-              name="name"
-              label="name"
-              placeholder="name"
-              required
-            />
-            <input
-              type="number"
-              onChange={this.handleChange}
-              name="muscle"
-              label="muscle"
-              placeholder="muscle"
-              required
-            />
-            <input
-              type="number"
-              onChange={this.handleChange}
-              name="bone"
-              label="bone"
-              placeholder="bone"
-              required
-            />
-            <select
-              name="protein_id"
-              id="protein_id"
-              onChange={this.handleChange}
-            >
-              <option> Select a name</option>
-              {proteins.map((protein) => {
-                return <option value={protein.id}> {protein.name}</option>;
-              })}
-            </select>
-          </div>
+        <div className="form-input">
+          <input
+            type="text"
+            onChange={this.handleChange}
+            name="name"
+            label="name"
+            placeholder="name"
+            required
+          />
+          <input
+            type="number"
+            onChange={this.handleChange}
+            name="muscle"
+            label="muscle"
+            placeholder="muscle"
+            required
+          />
+          <input
+            type="number"
+            onChange={this.handleChange}
+            name="bone"
+            label="bone"
+            placeholder="bone"
+            required
+          />
+          <select
+            name="protein_id"
+            id="protein_id"
+            onChange={this.handleChange}
+          >
+            <option> Select a name</option>
+            {proteins.map((protein) => {
+              return <option value={protein.id}> {protein.name}</option>;
+            })}
+          </select>
+        </div>
 
-          <Button
-            type="submit"
-            text="Add"
-            className="button button-primary"
-          ></Button>
-        </form>
-      </div>
+        <Button
+          type="submit"
+          text="Add"
+          className="button button-primary"
+        ></Button>
+      </form>
     );
   }
 }

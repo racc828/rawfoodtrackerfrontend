@@ -29,50 +29,48 @@ export default class PetForm extends React.Component {
 
   render() {
     return (
-      <div className="form">
-        <form id="pet-form" onSubmit={this.handleSubmit}>
-          <h1>Add Pet</h1>
+      <form id="pet-form" onSubmit={this.handleSubmit}>
+        <h1>Add Pet</h1>
 
-          <div className="form-input">
-            <input
-              type="text"
-              onChange={this.handleChange}
-              name="name"
-              label="name"
-              placeholder="name"
-              required
-            />
-          </div>
+        <div className="form-input">
+          <input
+            type="text"
+            onChange={this.handleChange}
+            name="name"
+            label="name"
+            placeholder="name"
+            required
+          />
+        </div>
 
-          <div className="form-input">
-            <input
-              type="number"
-              onChange={this.handleChange}
-              name="age"
-              label="age"
-              placeholder="age"
-              required
-            />
-          </div>
+        <div className="form-input">
+          <input
+            type="number"
+            onChange={this.handleChange}
+            name="age"
+            label="age"
+            placeholder="age"
+            required
+          />
+        </div>
 
-          <div className="form-input">
-            <input
-              type="text"
-              onChange={this.handleChange}
-              name="breed"
-              label="breed"
-              placeholder="breed"
-              required
-            />
-          </div>
+        <div className="form-input">
+          <input
+            type="text"
+            onChange={this.handleChange}
+            name="breed"
+            label="breed"
+            placeholder="breed"
+            required
+          />
+        </div>
 
-          <Button
-            type="submit"
-            text="Add"
-            className="button button-primary"
-          ></Button>
-        </form>
-      </div>
+        <Button
+          type="submit"
+          text="Add"
+          className="button button-primary"
+        ></Button>
+      </form>
     );
   }
 }

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "../../global/css/buttons.scss";
 import Button from "../Button/Button";
 
-const Navigation = ({
+const Header = ({
   currentUser,
   admin,
   toggleProteinForm,
@@ -12,9 +12,9 @@ const Navigation = ({
   togglePetForm,
 }) => {
   return (
-    <nav>
-      <div className="nav-left">{currentUser.firstname}</div>
-      <div className="nav-right">
+    <header className="header mb-4">
+      <div className="header-left">{currentUser.firstname}</div>
+      <div className="header-right">
         {admin && (
           <React.Fragment>
             <Button
@@ -40,13 +40,13 @@ const Navigation = ({
           className="button button-primary"
         ></Button>
       </div>
-    </nav>
+    </header>
   );
 };
 
-export default Navigation;
+export default Header;
 
-Navigation.propTypes = {
+Header.propTypes = {
   currentUser: PropTypes.object,
   admin: PropTypes.bool,
   toggleProteinForm: PropTypes.func,

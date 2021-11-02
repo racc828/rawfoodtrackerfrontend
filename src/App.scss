@@ -23,16 +23,22 @@ body {
 
 nav {
   background: $light-blue;
-  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
-    0 1px 5px 0 rgb(0 0 0 / 20%);
   display: flex;
   align-items: center;
   padding: 10px 50px;
   justify-content: space-between;
 }
 
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 9000;
+  box-shadow: $header-box-shadow;
+  background: $ocean-blue;
+}
+
 .main-wrapper {
-  margin-left: 200px;
+  padding-left: 16rem;
 }
 
 .card {

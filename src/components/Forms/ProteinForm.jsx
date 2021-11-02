@@ -36,28 +36,27 @@ export default class ProteinForm extends React.Component {
   render() {
     const { name } = this.state;
     return (
-      <div className="form">
-        <form id="protein-form" onSubmit={this.handleSubmit}>
-          <h1>Add Protein</h1>
+      <form id="protein-form" onSubmit={this.handleSubmit}>
+        <h1>Add Protein</h1>
 
-          <div className="form-input">
-            <input
-              type="text"
-              onChange={this.handleChange}
-              name="name"
-              label="name"
-              value={name}
-              required
-            />
-          </div>
+        <div className="input-group mb-4">
+          <input
+            type="text"
+            className="form-control"
+            onChange={this.handleChange}
+            name="name"
+            label="name"
+            value={name}
+            required
+          />
+        </div>
 
-          <Button
-            type="submit"
-            text="Add"
-            className="button button-primary"
-          ></Button>
-        </form>
-      </div>
+        <Button
+          type="submit"
+          text="Add"
+          className="button button-primary"
+        ></Button>
+      </form>
     );
   }
 }
