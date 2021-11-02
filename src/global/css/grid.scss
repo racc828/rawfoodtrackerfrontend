@@ -1,0 +1,24 @@
+.container {
+  width: 100%;
+  max-width: 1320px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col {
+  &-md {
+    &-8 {
+      width: 66.66666666%;
+      flex: 0 0 auto;
+    }
+    &-6 {
+      width: 50%;
+      flex: 0 0 auto;
+    }
+  }
+}

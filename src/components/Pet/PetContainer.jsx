@@ -44,15 +44,17 @@ export default class PetContainer extends React.Component {
 
     return (
       <div>
-        {petData && petData.portions && petData.portions.length === 0 && (
+        {petData && !petData.hasPortion && (
           <div className="half">
             <DailyPortionForm petId={petId} />
           </div>
         )}
 
-        <div className="half">
-          <DailyPortionContainer petId={petId} />
-        </div>
+        {petData && petData.hasPortion && (
+          <div className="half">
+            <DailyPortionContainer petId={petId} />
+          </div>
+        )}
       </div>
     );
   }

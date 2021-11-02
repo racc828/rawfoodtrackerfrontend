@@ -66,7 +66,7 @@ export default class DailyCalculator extends React.Component {
 
           <Button
             type="submit"
-            text="Add"
+            text="Calculate"
             className="button button-primary"
           ></Button>
         </form>

@@ -6,6 +6,8 @@ import UsersAdapter from "./adapters/UsersAdapter";
 import { Route } from "react-router-dom";
 import Home from "./components/Home";
 import "./App.scss";
+import "./global/css/grid.scss";
+import "./global/css/helpers.scss";
 
 class App extends Component {
   constructor() {

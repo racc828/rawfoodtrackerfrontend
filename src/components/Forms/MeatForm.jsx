@@ -55,7 +55,7 @@ export default class MeatForm extends React.Component {
     return (
       <div className="form">
         <form id="protein-form" onSubmit={this.handleSubmit}>
-          <h1>Add Protein</h1>
+          <h1>Add Meat</h1>
 
           <div className="form-input">
             <input

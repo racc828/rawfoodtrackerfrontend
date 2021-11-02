@@ -5,7 +5,7 @@ import MeatForm from "./Forms/MeatForm";
 import Navigation from "./User/Navigation";
 import PetContainer from "../components/Pet/PetContainer";
 import PetForm from "../components/Forms/PetForm";
-import PetNavigation from "./Pet/PetNavigation";
+import Sidebar from "./Sidebar/Sidebar";
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -61,31 +61,25 @@ export default class Home extends React.Component {
       displayPetForm,
     } = this.state;
     return (
-      <div>
-        <Navigation
-          currentUser={currentUser}
-          admin={admin}
-          logOut={logOut}
-          toggleProteinForm={this.toggleProteinForm}
-          toggleMeatForm={this.toggleMeatForm}
-          togglePetForm={this.togglePetForm}
-        />
-        <div className="row">
-          <div className="one-third">
-            <PetNavigation
-              currentUser={currentUser}
-              setActivePet={this.setActivePet}
-            />
-          </div>
+      <div className="root">
+        <Sidebar currentUser={currentUser} setActivePet={this.setActivePet} />
 
-          <div className="two-third">
-            {displayProteinForm && <ProteinForm />}
-            {displayMeatForm && <MeatForm />}
-            {displayPetForm && (
-              <PetForm userId={currentUser.id} handleAddPet={handleAddPet} />
-            )}
-            {activePet && <PetContainer petId={activePet} />}
-          </div>
+        <div className="main-wrapper">
+          <Navigation
+            currentUser={currentUser}
+            admin={admin}
+            logOut={logOut}
+            toggleProteinForm={this.toggleProteinForm}
+            toggleMeatForm={this.toggleMeatForm}
+            togglePetForm={this.togglePetForm}
+          />
+
+          {displayProteinForm && <ProteinForm />}
+          {displayMeatForm && <MeatForm />}
+          {displayPetForm && (
+            <PetForm userId={currentUser.id} handleAddPet={handleAddPet} />
+          )}
+          {activePet && <PetContainer petId={activePet} />}
         </div>
       </div>
     );

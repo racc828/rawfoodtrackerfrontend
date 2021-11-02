@@ -26,56 +26,60 @@ export default class Login extends React.Component {
   };
 
   render() {
-    const { handleSignUpClick, errorMessage } = this.props;
+    const { errorMessage } = this.props;
     return (
-      <div className="form">
-        <form id="user-login" onSubmit={this.handleSubmit}>
-          <h1>Login</h1>
+      <form id="user-login" onSubmit={this.handleSubmit}>
+        <h1>Login</h1>
 
-          <div className="form-input">
-            <input
-              type="text"
-              onChange={this.handleChange}
-              name="username"
-              label="username"
-              required
-            />
-          </div>
+        <div className="input-group mb-3">
+          <span className="input-group-text">
+            <i class="bi bi-person-circle icon"></i>
+          </span>
+          <input
+            className="form-control"
+            type="text"
+            placeholder="Username"
+            onChange={this.handleChange}
+            name="username"
+            label="username"
+            required
+          />
+        </div>
 
-          <div className="form-input">
-            <input
-              type="password"
-              onChange={this.handleChange}
-              label="password"
-              type="password"
-              name="password"
-              required
-            />
-          </div>
+        <div className="input-group mb-4">
+          <span className="input-group-text">
+            <i class="bi bi-lock icon"></i>
+          </span>
+          <input
+            className="form-control"
+            type="password"
+            placeholder="Password"
+            onChange={this.handleChange}
+            label="password"
+            type="password"
+            name="password"
+            required
+          />
+        </div>
+        <div className="row">
           <Button
             type="submit"
             text="Login"
             className="button button-primary"
           ></Button>
+        </div>
 
-          {errorMessage && (
-            <div className="user-form-error">
-              <span> {errorMessage}</span>
-            </div>
-          )}
-        </form>
-        <Button
-          onClick={handleSignUpClick}
-          text="Sign Up"
-          className="button button-primary"
-        ></Button>
-      </div>
+        {errorMessage && (
+          <div className="user-form-error">
+            <span> {errorMessage}</span>
+          </div>
+        )}
+      </form>
     );
   }
 }
 
 Login.propTypes = {
-  handleSignUpClick: PropTypes.func,
   getUser: PropTypes.func,
   errorMessage: PropTypes.string,
 };

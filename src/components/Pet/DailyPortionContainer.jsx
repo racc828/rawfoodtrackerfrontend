@@ -9,7 +9,7 @@ export default class DailyPortionContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dailyTotal: 32,
+      dailyTotal: 38,
       petPortionData: {},
       calculatedPortions: {
         boneContent: 0,

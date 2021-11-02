@@ -30,65 +30,91 @@ export default class SignUp extends React.Component {
   };
 
   render() {
-    const { errorMessage } = this.props;
+    const { errorMessage, toggleSignUp } = this.props;
+
     return (
-      <div className="user-form">
-        <form id="sign-up" onSubmit={this.handleSubmit}>
-          <h1>Sign Up</h1>
-          <div className="user-form-input">
-            <input
-              onChange={this.handleChange}
-              name="firstname"
-              type="text"
-              placeholder="First Name"
-            />
-          </div>
-          <div className="user-form-input">
-            <input
-              onChange={this.handleChange}
-              name="lastname"
-              type="text"
-              placeholder="Last Name"
-            />
-          </div>
-          <div className="user-form-input">
-            <input
-              onChange={this.handleChange}
-              name="email"
-              type="email"
-              placeholder="Email"
-            />
-          </div>
+      <form id="sign-up" onSubmit={this.handleSubmit}>
+        <Button
+          text="Back"
+          icon="arrow-left"
+          onClick={toggleSignUp}
+          className="button button-transparent pad-0"
+        />
+        <h1>Register</h1>
 
-          <div className="user-form-input">
-            <input
-              onChange={this.handleChange}
-              name="username"
-              type="text"
-              placeholder="Username"
-            />
-          </div>
-          <div className="user-form-input">
-            <input
-              onChange={this.handleChange}
-              name="password"
-              type="password"
-              placeholder="Password"
-            />
-          </div>
+        <div className="input-group mb-3">
+          <span className="input-group-text">
+            <i class="bi bi-person-circle icon"></i>
+          </span>
+          <input
+            className="form-control"
+            onChange={this.handleChange}
+            name="firstname"
+            type="text"
+            placeholder="First Name"
+          />
+        </div>
+        <div className="input-group mb-3">
+          <span className="input-group-text">
+            <i class="bi bi-person-circle icon"></i>
+          </span>
+          <input
+            className="form-control"
+            onChange={this.handleChange}
+            name="lastname"
+            type="text"
+            placeholder="Last Name"
+          />
+        </div>
+        <div className="input-group mb-3">
+          <span className="input-group-text">
+            <i class="bi bi-envelope icon"></i>
+          </span>
+          <input
+            className="form-control"
+            onChange={this.handleChange}
+            name="email"
+            type="email"
+            placeholder="Email"
+          />
+        </div>
 
-          <Button
-            type="submit"
-            classNamer="button button-primary"
-            text="Sign Up"
-          ></Button>
-          {errorMessage && (
-            <div className="user-form-error">
-              <span> {errorMessage}</span>
-            </div>
-          )}
-        </form>
-      </div>
+        <div className="input-group mb-3">
+          <span className="input-group-text">
+            <i class="bi bi-person-circle icon"></i>
+          </span>
+          <input
+            className="form-control"
+            onChange={this.handleChange}
+            name="username"
+            type="text"
+            placeholder="Username"
+          />
+        </div>
+        <div className="input-group mb-4">
+          <span className="input-group-text">
+            <i class="bi bi-lock icon"></i>
+          </span>
+          <input
+            className="form-control"
+            onChange={this.handleChange}
+            name="password"
+            type="password"
+            placeholder="Password"
+          />
+        </div>
+
+        <Button
+          type="submit"
+          className="button button-primary"
+          text="Sign Up"
+        ></Button>
+        {errorMessage && (
+          <div className="user-form-error">
+            <span> {errorMessage}</span>
+          </div>
+        )}
+      </form>
     );
   }
 }
@@ -96,4 +122,5 @@ export default class SignUp extends React.Component {
 SignUp.propTypes = {
   createUser: PropTypes.func,
   errorMessage: PropTypes.string,
+  toggleSignUp: PropTypes.func,
 };

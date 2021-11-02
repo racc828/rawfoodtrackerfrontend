@@ -7,15 +7,27 @@
   letter-spacing: 1px;
   border-style: none;
   cursor: pointer;
-  color: #fff;
+  color: $midnight-blue;
   border-radius: 5px;
   border: 2px solid $light-blue;
+
+  i {
+    margin-right: 10px;
+    font-size: 1.3rem;
+  }
   &-secondary {
-    color: $light-blue;
-    background: $white;
+    color: $midnight-blue;
+    background: transparent;
+    border: 1px solid $midnight-blue;
   }
 
   &-primary {
     background: $light-blue;
+  }
+
+  &-transparent {
+    background: transparent;
+    color: $light-blue;
+    border: none;
   }
 }

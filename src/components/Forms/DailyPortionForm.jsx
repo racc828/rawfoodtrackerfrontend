@@ -60,7 +60,7 @@ export default class DailyPortionForm extends React.Component {
     return (
       <div className="form">
         <form id="daily-portion-form" onSubmit={this.handleSubmit}>
-          <h1>Add a portion</h1>
+          <h1>Add a portion (percentage)</h1>
 
           <div className="form-input">
             <input
