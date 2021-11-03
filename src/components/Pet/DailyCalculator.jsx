@@ -37,22 +37,28 @@ export default class DailyCalculator extends React.Component {
   render() {
     const { meats } = this.state;
     return (
-      <div className="form">
-        <form id="calculator-form" onSubmit={this.handleSubmit}>
-          <h1>Daily Calculator</h1>
+      <form id="calculator-form" onSubmit={this.handleSubmit}>
+        <h1>Daily Calculator</h1>
 
-          <div className="form-input">
-            <input
-              type="number"
-              placeholder="ounces"
-              onChange={this.handleChange}
-              name="ounces"
-              label="ounces"
-              required
-            />
-          </div>
+        <div className="input-group mb-3">
+          <input
+            className="form-control"
+            type="number"
+            placeholder="ounces"
+            onChange={this.handleChange}
+            name="ounces"
+            label="ounces"
+            required
+          />
+        </div>
 
-          <select name="bone" id="meat_id" onChange={this.handleChange}>
+        <div className="input-group mb-4">
+          <select
+            name="bone"
+            id="meat_id"
+            onChange={this.handleChange}
+            className="form-control form-select"
+          >
             <option> Select a meat</option>
             {meats.map((meat, i) => {
               return (
@@ -63,14 +69,14 @@ export default class DailyCalculator extends React.Component {
               );
             })}
           </select>
+        </div>
 
-          <Button
-            type="submit"
-            text="Calculate"
-            className="button button-primary"
-          ></Button>
-        </form>
-      </div>
+        <Button
+          type="submit"
+          text="Calculate"
+          className="button button-primary"
+        ></Button>
+      </form>
     );
   }
 }

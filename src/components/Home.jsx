@@ -48,6 +48,9 @@ export default class Home extends React.Component {
   setActivePet = (e) => {
     this.setState({
       activePet: e.target.dataset.id,
+      displayMeatForm: false,
+      displayPetForm: false,
+      displayProteinForm: false,
     });
   };
 
@@ -65,31 +68,50 @@ export default class Home extends React.Component {
         <Sidebar currentUser={currentUser} setActivePet={this.setActivePet} />
 
         <div className="main-wrapper">
+          <Header
+            currentUser={currentUser}
+            admin={admin}
+            logOut={logOut}
+            toggleProteinForm={this.toggleProteinForm}
+            toggleMeatForm={this.toggleMeatForm}
+            togglePetForm={this.togglePetForm}
+          />
           <div className="container">
-            <Header
-              currentUser={currentUser}
-              admin={admin}
-              logOut={logOut}
-              toggleProteinForm={this.toggleProteinForm}
-              toggleMeatForm={this.toggleMeatForm}
-              togglePetForm={this.togglePetForm}
-            />
             <div className="row">
-              <div className="col-md-6">
-                <div className="card">
-                  <div className="card-body">
-                    {displayProteinForm && <ProteinForm />}
-                    {displayMeatForm && <MeatForm />}
-                    {displayPetForm && (
+              {displayProteinForm && (
+                <div className="col-md-6">
+                  <div className="card">
+                    <div className="card-body">
+                      <ProteinForm />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {displayMeatForm && (
+                <div className="col-md-6">
+                  <div className="card">
+                    <div className="card-body">
+                      <MeatForm />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {displayPetForm && (
+                <div className="col-md-6">
+                  <div className="card">
+                    <div className="card-body">
                       <PetForm
                         userId={currentUser.id}
                         handleAddPet={handleAddPet}
                       />
-                    )}
-                    {activePet && <PetContainer petId={activePet} />}
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
+
+              {activePet && <PetContainer petId={activePet} />}
             </div>
           </div>
         </div>

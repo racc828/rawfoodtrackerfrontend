@@ -14,7 +14,6 @@ const DailyPortion = ({
   return (
     <div>
       <Chart
-        width={"800px"}
         height={"400px"}
         chartType="PieChart"
         loader={<div>Loading Chart</div>}

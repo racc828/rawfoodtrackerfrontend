@@ -47,6 +47,7 @@ export default class ProteinForm extends React.Component {
             name="name"
             label="name"
             value={name}
+            placeholder="Protein Name"
             required
           />
         </div>

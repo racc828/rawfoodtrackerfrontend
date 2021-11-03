@@ -52,31 +52,48 @@ export default class DailyPortionContainer extends React.Component {
     const { dailyTotal, petPortionData, calculatedPortions } = this.state;
 
     return (
-      <div>
-        {petPortionData && <DailyPortion {...petPortionData} />}
-        <div className="half">
-          {petPortionData &&
-            Object.entries(petPortionData).map(([key, value], i) => {
-              if (key.includes("at") || key.includes("id")) {
-                return null;
-              } else {
-                return (
-                  <DailyPortionData
-                    calculatedPortions={calculatedPortions}
-                    key={i}
-                    dailyTotal={dailyTotal}
-                    category={key}
-                    percentage={value}
-                  />
-                );
-              }
-            })}
+      <React.Fragment>
+        <div className="col-md-6">
+          <div className="card">
+            <div className="card-body">
+              {petPortionData && <DailyPortion {...petPortionData} />}
+            </div>
+          </div>
         </div>
 
-        <div className="half">
-          <DailyCalculator calculatePortion={this.calculatePortion} />
+        <div className="col-md-6">
+          <div className="card">
+            <div className="card-body">
+              <ul class="list-group list-group-flush">
+                {petPortionData &&
+                  Object.entries(petPortionData).map(([key, value], i) => {
+                    if (key.includes("at") || key.includes("id")) {
+                      return null;
+                    } else {
+                      return (
+                        <DailyPortionData
+                          calculatedPortions={calculatedPortions}
+                          key={i}
+                          dailyTotal={dailyTotal}
+                          category={key}
+                          percentage={value}
+                        />
+                      );
+                    }
+                  })}
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
+
+        <div className="col-md-6">
+          <div className="card">
+            <div className="card-body">
+              <DailyCalculator calculatePortion={this.calculatePortion} />
+            </div>
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }

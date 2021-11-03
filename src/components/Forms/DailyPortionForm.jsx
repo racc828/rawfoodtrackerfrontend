@@ -61,8 +61,9 @@ export default class DailyPortionForm extends React.Component {
       <form id="daily-portion-form" onSubmit={this.handleSubmit}>
         <h1>Add a portion (percentage)</h1>
 
-        <div className="form-input">
+        <div className="input-group mb-3">
           <input
+            className="form-control"
             type="number"
             onChange={this.handleChange}
             name="muscle"
@@ -70,8 +71,11 @@ export default class DailyPortionForm extends React.Component {
             placeholder="muscle"
             required
           />
+        </div>
 
+        <div className="input-group mb-3">
           <input
+            className="form-control"
             type="number"
             onChange={this.handleChange}
             name="bone"
@@ -79,8 +83,11 @@ export default class DailyPortionForm extends React.Component {
             placeholder="bone"
             required
           />
+        </div>
 
+        <div className="input-group mb-3">
           <input
+            className="form-control"
             type="number"
             onChange={this.handleChange}
             name="vegetable"
@@ -88,8 +95,11 @@ export default class DailyPortionForm extends React.Component {
             placeholder="vegetable"
             required
           />
+        </div>
 
+        <div className="input-group mb-3">
           <input
+            className="form-control"
             type="number"
             onChange={this.handleChange}
             name="liver"
@@ -97,8 +107,11 @@ export default class DailyPortionForm extends React.Component {
             placeholder="liver"
             required
           />
+        </div>
 
+        <div className="input-group mb-3">
           <input
+            className="form-control"
             type="number"
             onChange={this.handleChange}
             name="organ"
@@ -106,8 +119,11 @@ export default class DailyPortionForm extends React.Component {
             placeholder="organs"
             required
           />
+        </div>
 
+        <div className="input-group mb-3">
           <input
+            className="form-control"
             type="number"
             onChange={this.handleChange}
             name="nut"
@@ -115,8 +131,11 @@ export default class DailyPortionForm extends React.Component {
             placeholder="nut"
             required
           />
+        </div>
 
+        <div className="input-group mb-4">
           <input
+            className="form-control"
             type="number"
             onChange={this.handleChange}
             name="fruit"

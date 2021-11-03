@@ -35,6 +35,12 @@ nav {
   z-index: 9000;
   box-shadow: $header-box-shadow;
   background: $ocean-blue;
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  &-right {
+    margin-left: auto;
+  }
 }
 
 .main-wrapper {
@@ -76,6 +82,17 @@ nav {
     display: flex;
     align-items: stretch;
     width: 100%;
+
+    & > :not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    & > :not(:first-child) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
     &-text {
       display: flex;
       align-items: center;
@@ -88,8 +105,23 @@ nav {
       white-space: nowrap;
       border: 1px solid $input-border;
       border-radius: 0.25rem;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+    }
+  }
+}
+
+.list {
+  &-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+    border-radius: 0.25rem;
+
+    &-item {
+      position: relative;
+      display: block;
+      padding: 0.5rem 1rem;
+      color: $white;
+      text-decoration: none;
     }
   }
 }
@@ -110,8 +142,15 @@ nav {
     -moz-appearance: none;
     appearance: none;
     border-radius: 0.25rem;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  &-select {
+    background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+      linear-gradient(135deg, gray 50%, transparent 50%),
+      linear-gradient(to right, #ccc, #ccc);
+    background-position: calc(100% - 20px) calc(1em + 2px),
+      calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+    background-size: 5px 5px, 5px 5px, 1px 1.5em;
+    background-repeat: no-repeat;
   }
 }

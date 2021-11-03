@@ -39,23 +39,20 @@ export default class PetContainer extends React.Component {
     const { petId } = this.props;
     const { petData } = this.state;
 
-    // prettier-ignore
-    console.log(`%cpetdata`, 'background: #FF1493; color: #fff; padding: 3px;', petData); // eslint-disable-line
-
     return (
-      <div>
+      <React.Fragment>
         {petData && !petData.hasPortion && (
-          <div className="half">
-            <DailyPortionForm petId={petId} />
+          <div className="card">
+            <div className="card-body">
+              <DailyPortionForm petId={petId} />
+            </div>
           </div>
         )}
 
         {petData && petData.hasPortion && (
-          <div className="half">
-            <DailyPortionContainer petId={petId} />
-          </div>
+          <DailyPortionContainer petId={petId} />
         )}
-      </div>
+      </React.Fragment>
     );
   }
 }

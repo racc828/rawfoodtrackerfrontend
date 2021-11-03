@@ -32,8 +32,9 @@ export default class PetForm extends React.Component {
       <form id="pet-form" onSubmit={this.handleSubmit}>
         <h1>Add Pet</h1>
 
-        <div className="form-input">
+        <div className="input-group mb-3">
           <input
+            className="form-control"
             type="text"
             onChange={this.handleChange}
             name="name"
@@ -43,8 +44,9 @@ export default class PetForm extends React.Component {
           />
         </div>
 
-        <div className="form-input">
+        <div className="input-group mb-3">
           <input
+            className="form-control"
             type="number"
             onChange={this.handleChange}
             name="age"
@@ -54,8 +56,9 @@ export default class PetForm extends React.Component {
           />
         </div>
 
-        <div className="form-input">
+        <div className="input-group mb-4">
           <input
+            className="form-control"
             type="text"
             onChange={this.handleChange}
             name="breed"

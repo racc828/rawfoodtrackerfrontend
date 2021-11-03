@@ -13,32 +13,34 @@ const Header = ({
 }) => {
   return (
     <header className="header mb-4">
-      <div className="header-left">{currentUser.firstname}</div>
-      <div className="header-right">
-        {admin && (
-          <React.Fragment>
-            <Button
-              text="Add Protein"
-              onClick={toggleProteinForm}
-              className="button button-secondary"
-            ></Button>
-            <Button
-              text="Add Meat"
-              onClick={toggleMeatForm}
-              className="button button-secondary"
-            ></Button>
-          </React.Fragment>
-        )}
-        <Button
-          text="Add Pet"
-          onClick={togglePetForm}
-          className="button button-secondary"
-        ></Button>
-        <Button
-          text="Logout"
-          onClick={logOut}
-          className="button button-primary"
-        ></Button>
+      <div className="container d-flex align-items-center">
+        <div className="header-left">{currentUser.firstname}</div>
+        <div className="header-right">
+          {admin && (
+            <React.Fragment>
+              <Button
+                text="Add Protein"
+                onClick={toggleProteinForm}
+                className="button button-transparent"
+              ></Button>
+              <Button
+                text="Add Meat"
+                onClick={toggleMeatForm}
+                className="button button-transparent"
+              ></Button>
+            </React.Fragment>
+          )}
+          <Button
+            text="Add Pet"
+            onClick={togglePetForm}
+            className="button button-transparent"
+          ></Button>
+          <Button
+            text="Logout"
+            onClick={logOut}
+            className="button button-primary"
+          ></Button>
+        </div>
       </div>
     </header>
   );

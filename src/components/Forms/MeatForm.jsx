@@ -56,8 +56,9 @@ export default class MeatForm extends React.Component {
       <form id="protein-form" onSubmit={this.handleSubmit}>
         <h1>Add Meat</h1>
 
-        <div className="form-input">
+        <div className="input-group mb-3">
           <input
+            className="form-control"
             type="text"
             onChange={this.handleChange}
             name="name"
@@ -65,7 +66,10 @@ export default class MeatForm extends React.Component {
             placeholder="name"
             required
           />
+        </div>
+        <div className="input-group mb-3">
           <input
+            className="form-control"
             type="number"
             onChange={this.handleChange}
             name="muscle"
@@ -73,7 +77,10 @@ export default class MeatForm extends React.Component {
             placeholder="muscle"
             required
           />
+        </div>
+        <div className="input-group mb-3">
           <input
+            className="form-control"
             type="number"
             onChange={this.handleChange}
             name="bone"
@@ -81,7 +88,10 @@ export default class MeatForm extends React.Component {
             placeholder="bone"
             required
           />
+        </div>
+        <div className="input-group mb-4">
           <select
+            className="form-control form-select"
             name="protein_id"
             id="protein_id"
             onChange={this.handleChange}

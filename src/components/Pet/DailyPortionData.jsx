@@ -22,12 +22,9 @@ const DailyPortionData = ({
   };
 
   return (
-    <div>
-      <div>
-        {category} : {percentage}%
-      </div>
-      {totalOunces()} oz
-    </div>
+    <li class="list-group-item">
+      {category} : {percentage}% -- {totalOunces()}
+    </li>
   );
 };
 

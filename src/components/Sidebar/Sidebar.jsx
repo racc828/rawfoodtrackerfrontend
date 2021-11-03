@@ -1,5 +1,6 @@
 import React from "react";
 import "../../global/css/sidebar.scss";
+import Button from "../Button/Button";
 
 const Sidebar = ({ currentUser, setActivePet }) => {
   return (
@@ -8,14 +9,13 @@ const Sidebar = ({ currentUser, setActivePet }) => {
         {currentUser.pets.map((pet, i) => {
           return (
             <li className="sidebar-nav-item">
-              <a
-                className="sidebar-nav-item-link"
+              <Button
+                className="button button-transparent"
                 key={i}
                 id={pet.id}
                 onClick={setActivePet}
-              >
-                {pet.name}
-              </a>
+                text={pet.name}
+              />
             </li>
           );
         })}
