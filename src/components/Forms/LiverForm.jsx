@@ -1,15 +1,13 @@
 import React from "react";
 import Button from "../Button/Button";
 import ProteinsAdapter from "../../adapters/ProteinsAdapter";
-import MeatsAdapter from "../../adapters/MeatsAdapter";
+import LiversAdapter from "../../adapters/LiversAdapter";
 
-export default class MeatForm extends React.Component {
+export default class LiverForm extends React.Component {
   constructor() {
     super();
     this.state = {
       name: "",
-      bone: null,
-      muscle: null,
       protein_id: "",
       proteins: [],
     };
@@ -34,15 +32,13 @@ export default class MeatForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { name, bone, muscle, protein_id } = this.state;
-    let meat = {
+    const { name, protein_id } = this.state;
+    let liver = {
       name,
-      bone,
-      muscle,
       protein_id,
     };
-    MeatsAdapter.createMeat(meat).then((meatData) => {
-      if (meatData.error) {
+    LiversAdapter.createLiver(liver).then((liverData) => {
+      if (liverData.error) {
         alert("failure");
       } else {
         alert("success");
@@ -53,8 +49,8 @@ export default class MeatForm extends React.Component {
   render() {
     const { proteins } = this.state;
     return (
-      <form id="protein-form" onSubmit={this.handleSubmit}>
-        <h1>Add Meat</h1>
+      <form id="liver-form" onSubmit={this.handleSubmit}>
+        <h1>Add Liver</h1>
 
         <div className="input-group mb-3">
           <input
@@ -67,28 +63,7 @@ export default class MeatForm extends React.Component {
             required
           />
         </div>
-        <div className="input-group mb-3">
-          <input
-            className="form-control"
-            type="number"
-            onChange={this.handleChange}
-            name="muscle"
-            label="muscle"
-            placeholder="muscle"
-            required
-          />
-        </div>
-        <div className="input-group mb-3">
-          <input
-            className="form-control"
-            type="number"
-            onChange={this.handleChange}
-            name="bone"
-            label="bone"
-            placeholder="bone"
-            required
-          />
-        </div>
+
         <div className="input-group mb-4">
           <select
             className="form-control form-select"

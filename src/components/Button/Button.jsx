@@ -16,7 +16,7 @@ const Button = ({ className, text, type, onClick, id, icon }) => {
         data-id={id}
       >
         <i className={`bi bi-${icon}`} />
-        {text}
+        {text && <span>{text}</span>}
       </button>
     );
   } else {

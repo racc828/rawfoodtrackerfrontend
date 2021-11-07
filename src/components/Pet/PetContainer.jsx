@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import PetsAdapter from "../../adapters/PetsAdapter";
 import DailyPortionForm from "../Forms/DailyPortionForm";
 import DailyPortionContainer from "../Pet/DailyPortionContainer";
+import MealContainer from "../Meal/MealContainer";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 
 export default class PetContainer extends React.Component {
   constructor() {
@@ -41,17 +44,33 @@ export default class PetContainer extends React.Component {
 
     return (
       <React.Fragment>
-        {petData && !petData.hasPortion && (
-          <div className="card">
-            <div className="card-body">
-              <DailyPortionForm petId={petId} />
-            </div>
-          </div>
-        )}
+        <Tabs>
+          <TabList>
+            <Tab>Daily Portions</Tab>
+            <Tab>Raw Meaty Bones</Tab>
+            <Tab>Calendar</Tab>
+            <Tab>Meals</Tab>
+          </TabList>
 
-        {petData && petData.hasPortion && (
-          <DailyPortionContainer petId={petId} />
-        )}
+          <TabPanel>
+            {petData && !petData.hasPortion && (
+              <div className="card">
+                <div className="card-body">
+                  <DailyPortionForm petId={petId} />
+                </div>
+              </div>
+            )}
+          </TabPanel>
+          <TabPanel>
+            {petData && petData.hasPortion && (
+              <DailyPortionContainer petId={petId} />
+            )}
+          </TabPanel>
+          <TabPanel> Calendar</TabPanel>
+          <TabPanel>
+            <MealContainer petId={petId} />
+          </TabPanel>
+        </Tabs>
       </React.Fragment>
     );
   }

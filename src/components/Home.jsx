@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ProteinForm from "./Forms/ProteinForm";
-import MeatForm from "./Forms/MeatForm";
+import BoneForm from "./Forms/BoneForm";
 import Header from "./User/Header";
 import PetContainer from "../components/Pet/PetContainer";
 import PetForm from "../components/Forms/PetForm";
 import Sidebar from "./Sidebar/Sidebar";
+import LiverForm from "../components/Forms/LiverForm";
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -18,9 +19,10 @@ export default class Home extends React.Component {
           ? true
           : false,
       displayProteinForm: false,
-      displayMeatForm: false,
+      displayBoneForm: false,
       activePet: null,
       displayPetForm: false,
+      displayLiverForm: false,
     };
   }
 
@@ -31,10 +33,17 @@ export default class Home extends React.Component {
     });
   };
 
-  toggleMeatForm = () => {
-    const { displayMeatForm } = this.state;
+  toggleBoneForm = () => {
+    const { displayBoneForm } = this.state;
     this.setState({
-      displayMeatForm: !displayMeatForm,
+      displayBoneForm: !displayBoneForm,
+    });
+  };
+
+  toggleLiverForm = () => {
+    const { displayLiverForm } = this.state;
+    this.setState({
+      displayLiverForm: !displayLiverForm,
     });
   };
 
@@ -48,9 +57,10 @@ export default class Home extends React.Component {
   setActivePet = (e) => {
     this.setState({
       activePet: e.target.dataset.id,
-      displayMeatForm: false,
+      displayBoneForm: false,
       displayPetForm: false,
       displayProteinForm: false,
+      displayLiverForm: false,
     });
   };
 
@@ -59,9 +69,10 @@ export default class Home extends React.Component {
     const {
       admin,
       displayProteinForm,
-      displayMeatForm,
+      displayBoneForm,
       activePet,
       displayPetForm,
+      displayLiverForm,
     } = this.state;
     return (
       <div className="root">
@@ -73,8 +84,9 @@ export default class Home extends React.Component {
             admin={admin}
             logOut={logOut}
             toggleProteinForm={this.toggleProteinForm}
-            toggleMeatForm={this.toggleMeatForm}
+            toggleBoneForm={this.toggleBoneForm}
             togglePetForm={this.togglePetForm}
+            toggleLiverForm={this.toggleLiverForm}
           />
           <div className="container">
             <div className="row">
@@ -88,11 +100,21 @@ export default class Home extends React.Component {
                 </div>
               )}
 
-              {displayMeatForm && (
+              {displayBoneForm && (
                 <div className="col-md-6">
                   <div className="card">
                     <div className="card-body">
-                      <MeatForm />
+                      <BoneForm />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {displayLiverForm && (
+                <div className="col-md-6">
+                  <div className="card">
+                    <div className="card-body">
+                      <LiverForm />
                     </div>
                   </div>
                 </div>

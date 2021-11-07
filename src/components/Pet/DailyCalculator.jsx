@@ -1,20 +1,20 @@
 import React from "react";
-import MeatsAdapter from "../../adapters/MeatsAdapter";
+import BonesAdapter from "../../adapters/BonesAdapter";
 import Button from "../Button/Button";
 
 export default class DailyCalculator extends React.Component {
   constructor() {
     super();
     this.state = {
-      meats: [],
+      bones: [],
     };
   }
 
   componentDidMount() {
     // TODO change this soi t only gets thep roteins
-    MeatsAdapter.getMeats().then((data) => {
+    BonesAdapter.getBones().then((data) => {
       this.setState({
-        meats: data,
+        bones: data,
       });
     });
   }
@@ -35,7 +35,7 @@ export default class DailyCalculator extends React.Component {
   };
 
   render() {
-    const { meats } = this.state;
+    const { bones } = this.state;
     return (
       <form id="calculator-form" onSubmit={this.handleSubmit}>
         <h1>Daily Calculator</h1>
@@ -55,16 +55,16 @@ export default class DailyCalculator extends React.Component {
         <div className="input-group mb-4">
           <select
             name="bone"
-            id="meat_id"
+            id="bone_id"
             onChange={this.handleChange}
             className="form-control form-select"
           >
-            <option> Select a meat</option>
-            {meats.map((meat, i) => {
+            <option> Select a raw meaty bone</option>
+            {bones.map((bone, i) => {
               return (
-                <option key={i} value={meat.bone}>
-                  {meat.proteinName}
-                  {meat.name}
+                <option key={i} value={bone.bone}>
+                  {bone.proteinName}
+                  {bone.name}
                 </option>
               );
             })}

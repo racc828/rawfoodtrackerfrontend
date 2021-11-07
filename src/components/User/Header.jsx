@@ -8,8 +8,9 @@ const Header = ({
   admin,
   toggleProteinForm,
   logOut,
-  toggleMeatForm,
+  toggleBoneForm,
   togglePetForm,
+  toggleLiverForm,
 }) => {
   return (
     <header className="header mb-4">
@@ -24,8 +25,13 @@ const Header = ({
                 className="button button-transparent"
               ></Button>
               <Button
-                text="Add Meat"
-                onClick={toggleMeatForm}
+                text="Add Raw Meaty Bone"
+                onClick={toggleBoneForm}
+                className="button button-transparent"
+              ></Button>
+              <Button
+                text="Add Liver"
+                onClick={toggleLiverForm}
                 className="button button-transparent"
               ></Button>
             </React.Fragment>
@@ -53,6 +59,6 @@ Header.propTypes = {
   admin: PropTypes.bool,
   toggleProteinForm: PropTypes.func,
   logOut: PropTypes.func,
-  toggleMeatForm: PropTypes.func,
+  toggleBoneForm: PropTypes.func,
   togglePetForm: PropTypes.func,
 };

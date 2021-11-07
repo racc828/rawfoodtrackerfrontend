@@ -54,15 +54,7 @@ export default class DailyPortionContainer extends React.Component {
     return (
       <React.Fragment>
         <div className="col-md-6">
-          <div className="card">
-            <div className="card-body">
-              {petPortionData && <DailyPortion {...petPortionData} />}
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-6">
-          <div className="card">
+          <div className="card mb-4">
             <div className="card-body">
               <ul class="list-group list-group-flush">
                 {petPortionData &&
@@ -84,12 +76,18 @@ export default class DailyPortionContainer extends React.Component {
               </ul>
             </div>
           </div>
+
+          <div className="card">
+            <div className="card-body">
+              <DailyCalculator calculatePortion={this.calculatePortion} />
+            </div>
+          </div>
         </div>
 
         <div className="col-md-6">
           <div className="card">
             <div className="card-body">
-              <DailyCalculator calculatePortion={this.calculatePortion} />
+              {petPortionData && <DailyPortion {...petPortionData} />}
             </div>
           </div>
         </div>

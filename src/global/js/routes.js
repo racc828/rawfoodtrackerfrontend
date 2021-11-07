@@ -25,8 +25,14 @@ export const apis = {
   Users: "users",
   Sessions: "sessions",
   Proteins: "proteins",
-  Meats: "meats",
+  Bones: "bones",
   Portions: "portions",
+  Meals: "meals",
+  Veggies: "veggies",
+  Nuts: "nuts",
+  Fruits: "fruits",
+  Organs: "organs",
+  Livers: "livers",
 };
 
 export const routes = {
@@ -67,15 +73,15 @@ export const routes = {
       }),
     },
   },
-  [apis.Meats]: {
+  [apis.Bones]: {
     endpoints: {
-      createMeat: () => ({
-        url: `${rootUrl}/meats`,
+      createBone: () => ({
+        url: `${rootUrl}/bones`,
         method: methods.POST,
         headers,
       }),
-      getMeats: () => ({
-        url: `${rootUrl}/meats`,
+      getBones: () => ({
+        url: `${rootUrl}/bones`,
         method: methods.GET,
         headers,
       }),
@@ -105,6 +111,70 @@ export const routes = {
       createPet: () => ({
         url: `${rootUrl}/pets`,
         method: methods.POST,
+        headers,
+      }),
+    },
+  },
+  [apis.Meals]: {
+    endpoints: {
+      createMeal: () => ({
+        url: `${rootUrl}/meals`,
+        method: methods.POST,
+        headers,
+      }),
+      getAllCategories: () => ({
+        url: `${rootUrl}/meals`,
+        method: methods.POST,
+        headers,
+      }),
+    },
+  },
+  [apis.Veggies]: {
+    endpoints: {
+      getVeggies: () => ({
+        url: `${rootUrl}/veggies`,
+        method: methods.GET,
+        headers,
+      }),
+    },
+  },
+  [apis.Fruits]: {
+    endpoints: {
+      getFruits: () => ({
+        url: `${rootUrl}/fruits`,
+        method: methods.GET,
+        headers,
+      }),
+    },
+  },
+  [apis.Organs]: {
+    endpoints: {
+      getOrgans: () => ({
+        url: `${rootUrl}/organs`,
+        method: methods.GET,
+        headers,
+      }),
+    },
+  },
+  [apis.Livers]: {
+    endpoints: {
+      createLiver: () => ({
+        url: `${rootUrl}/livers`,
+        method: methods.POST,
+        headers,
+      }),
+      getLivers: () => ({
+        url: `${rootUrl}/livers`,
+        method: methods.GET,
+        headers,
+      }),
+    },
+  },
+  [apis.Nuts]: {
+    endpoints: {
+      getNuts: () => ({
+        url: `${rootUrl}/nuts`,
+        method: methods.GET,
         headers,
       }),
     },
