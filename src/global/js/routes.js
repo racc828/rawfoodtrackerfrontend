@@ -33,6 +33,7 @@ export const apis = {
   Fruits: "fruits",
   Organs: "organs",
   Livers: "livers",
+  Muscles: "muscles",
 };
 
 export const routes = {
@@ -149,8 +150,27 @@ export const routes = {
   },
   [apis.Organs]: {
     endpoints: {
+      createOrgan: () => ({
+        url: `${rootUrl}/organs`,
+        method: methods.POST,
+        headers,
+      }),
       getOrgans: () => ({
         url: `${rootUrl}/organs`,
+        method: methods.GET,
+        headers,
+      }),
+    },
+  },
+  [apis.Muscles]: {
+    endpoints: {
+      createMuscle: () => ({
+        url: `${rootUrl}/muscles`,
+        method: methods.POST,
+        headers,
+      }),
+      getMuscles: () => ({
+        url: `${rootUrl}/muscles`,
         method: methods.GET,
         headers,
       }),

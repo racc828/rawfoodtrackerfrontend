@@ -29,9 +29,9 @@ export default class MealForm extends React.Component {
   };
 
   handleSubmitFoodType = (e) => {
-    const { addFoodType } = this.props;
+    const { addFoodType, name } = this.props;
     const { foodType, ounces } = this.state;
-    const formData = { ...foodType, ounces };
+    const formData = { ...foodType, ounces, categoryName: name };
     addFoodType(formData);
     this.setState({
       foodType: {},

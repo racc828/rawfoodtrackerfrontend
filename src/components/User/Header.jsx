@@ -11,6 +11,8 @@ const Header = ({
   toggleBoneForm,
   togglePetForm,
   toggleLiverForm,
+  toggleOrganForm,
+  toggleMuscleForm,
 }) => {
   return (
     <header className="header mb-4">
@@ -32,6 +34,16 @@ const Header = ({
               <Button
                 text="Add Liver"
                 onClick={toggleLiverForm}
+                className="button button-transparent"
+              ></Button>
+              <Button
+                text="Add Organ"
+                onClick={toggleOrganForm}
+                className="button button-transparent"
+              ></Button>
+              <Button
+                text="Add Muscle"
+                onClick={toggleMuscleForm}
                 className="button button-transparent"
               ></Button>
             </React.Fragment>
@@ -61,4 +73,7 @@ Header.propTypes = {
   logOut: PropTypes.func,
   toggleBoneForm: PropTypes.func,
   togglePetForm: PropTypes.func,
+  toggleOrganForm: PropTypes.func,
+  toggleMuscleForm: PropTypes.func,
+  toggleLiverForm: PropTypes.func,
 };

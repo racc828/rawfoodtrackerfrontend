@@ -7,6 +7,8 @@ import PetContainer from "../components/Pet/PetContainer";
 import PetForm from "../components/Forms/PetForm";
 import Sidebar from "./Sidebar/Sidebar";
 import LiverForm from "../components/Forms/LiverForm";
+import OrganForm from "../components/Forms/OrganForm";
+import MuscleForm from "../components/Forms/MuscleForm";
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -23,6 +25,8 @@ export default class Home extends React.Component {
       activePet: null,
       displayPetForm: false,
       displayLiverForm: false,
+      displayOrganForm: false,
+      displayMuscleForm: false,
     };
   }
 
@@ -47,6 +51,20 @@ export default class Home extends React.Component {
     });
   };
 
+  toggleOrganForm = () => {
+    const { displayOrganForm } = this.state;
+    this.setState({
+      displayOrganForm: !displayOrganForm,
+    });
+  };
+
+  toggleMuscleForm = () => {
+    const { displayMuscleForm } = this.state;
+    this.setState({
+      displayMuscleForm: !displayMuscleForm,
+    });
+  };
+
   togglePetForm = () => {
     const { displayPetForm } = this.state;
     this.setState({
@@ -61,6 +79,8 @@ export default class Home extends React.Component {
       displayPetForm: false,
       displayProteinForm: false,
       displayLiverForm: false,
+      displayMuscleForm: false,
+      displayOrganForm: false,
     });
   };
 
@@ -73,6 +93,8 @@ export default class Home extends React.Component {
       activePet,
       displayPetForm,
       displayLiverForm,
+      displayMuscleForm,
+      displayOrganForm,
     } = this.state;
     return (
       <div className="root">
@@ -87,6 +109,8 @@ export default class Home extends React.Component {
             toggleBoneForm={this.toggleBoneForm}
             togglePetForm={this.togglePetForm}
             toggleLiverForm={this.toggleLiverForm}
+            toggleMuscleForm={this.toggleMuscleForm}
+            toggleOrganForm={this.toggleOrganForm}
           />
           <div className="container">
             <div className="row">
@@ -115,6 +139,26 @@ export default class Home extends React.Component {
                   <div className="card">
                     <div className="card-body">
                       <LiverForm />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {displayOrganForm && (
+                <div className="col-md-6">
+                  <div className="card">
+                    <div className="card-body">
+                      <OrganForm />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {displayMuscleForm && (
+                <div className="col-md-6">
+                  <div className="card">
+                    <div className="card-body">
+                      <MuscleForm />
                     </div>
                   </div>
                 </div>

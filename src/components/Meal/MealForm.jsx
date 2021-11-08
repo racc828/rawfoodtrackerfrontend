@@ -49,7 +49,7 @@ export default class MealForm extends React.Component {
   };
 
   render() {
-    const { veggies, foodData } = this.props;
+    const { foodData } = this.props;
     const { foodTypes } = this.state;
     const newData = this.transformFoodData(foodData);
 

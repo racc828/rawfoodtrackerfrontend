@@ -1,21 +1,21 @@
 import { apis, routes } from "../global/js/routes";
 
-const currentRoute = routes[apis.Organs];
+const currentRoute = routes[apis.Muscles];
 
-export default class OrgansAdapter {
-  static createOrgan(organ) {
-    const endpoint = currentRoute.endpoints.createOrgan();
+export default class MusclesAdapter {
+  static createMuscle(muscle) {
+    const endpoint = currentRoute.endpoints.createMuscle();
     return fetch(endpoint.url, {
       method: endpoint.method,
       headers: endpoint.headers,
       body: JSON.stringify({
-        name: organ.name,
-        protein_id: parseInt(organ.protein_id),
+        name: muscle.name,
+        protein_id: parseInt(muscle.protein_id),
       }),
     }).then((resp) => resp.json());
   }
-  static getOrgans() {
-    const endpoint = currentRoute.endpoints.getOrgans();
+  static getMuscles() {
+    const endpoint = currentRoute.endpoints.getMuscles();
 
     return fetch(endpoint.url, {
       method: endpoint.method,

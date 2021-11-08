@@ -14,7 +14,6 @@ export default class PetsAdapter {
 
   static createPet(pet) {
     const endpoint = currentRoute.endpoints.createPet();
-    debugger; // eslint-disable-line
     return fetch(endpoint.url, {
       method: endpoint.method,
       headers: endpoint.headers,
