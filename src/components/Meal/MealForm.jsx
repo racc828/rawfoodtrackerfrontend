@@ -44,12 +44,10 @@ export default class MealForm extends React.Component {
       // prettier-ignore
       console.log(`%cconsolelog`, 'background: #FF1493; color: #fff; padding: 3px;'); // eslint-disable-line
     });
-    // prettier-ignore
-    console.log(`%cevent`, 'background: #FF1493; color: #fff; padding: 3px;'); // eslint-disable-line
   };
 
   render() {
-    const { foodData } = this.props;
+    const { foodData, calculatePortion } = this.props;
     const { foodTypes } = this.state;
     const newData = this.transformFoodData(foodData);
 
@@ -75,6 +73,7 @@ export default class MealForm extends React.Component {
             {newData.map((data) => {
               return (
                 <MealSubForm
+                  calculatePortion={calculatePortion}
                   addFoodType={this.addFoodType}
                   foodType={data.foodItems}
                   name={data.name}
@@ -102,5 +101,5 @@ export default class MealForm extends React.Component {
 
 MealForm.propTypes = {
   petId: PropTypes.string,
-  veggies: PropTypes.array,
+  calculatePortion: PropTypes.func,
 };

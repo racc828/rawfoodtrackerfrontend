@@ -1,7 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Button from "../Button/Button";
+import { categoryTypes } from "../../global/js/constants";
 
-export default class MealForm extends React.Component {
+export default class MealSubForm extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -19,24 +21,30 @@ export default class MealForm extends React.Component {
   };
 
   handleChangeSelect = (e) => {
+    const { name } = this.props;
     let property = e.target.name;
     let value = e.target.value;
     const selectedOption = e.target.selectedOptions[0].text;
-
-    this.setState({
-      [property]: { id: value, name: selectedOption },
-    });
+    if (name === categoryTypes.bones) {
+      const boneContent = e.target.selectedOptions[0].dataset.bone;
+      this.setState({
+        [property]: { id: value, name: selectedOption, bone: boneContent },
+      });
+    } else {
+      this.setState({
+        [property]: { id: value, name: selectedOption },
+      });
+    }
   };
 
   handleSubmitFoodType = (e) => {
-    const { addFoodType, name } = this.props;
+    const { addFoodType, name, calculatePortion } = this.props;
     const { foodType, ounces } = this.state;
     const formData = { ...foodType, ounces, categoryName: name };
+    if (name === categoryTypes.bones) {
+      calculatePortion({ ounces, bone: foodType.bone });
+    }
     addFoodType(formData);
-    this.setState({
-      foodType: {},
-      ounces: "",
-    });
   };
 
   render() {
@@ -56,11 +64,15 @@ export default class MealForm extends React.Component {
                 >
                   <option> Select {name}</option>
                   {foodType.map((food) => {
-                    return (
-                      <option value={food.id} data-name={food.name}>
-                        {food.name}
-                      </option>
-                    );
+                    if (food.bone_content) {
+                      return (
+                        <option value={food.id} data-bone={food.bone_content}>
+                          {food.name}
+                        </option>
+                      );
+                    } else {
+                      return <option value={food.id}>{food.name}</option>;
+                    }
                   })}
                 </select>
               </div>
@@ -92,3 +104,9 @@ export default class MealForm extends React.Component {
     );
   }
 }
+
+MealSubForm.propTypes = {
+  name: PropTypes.string,
+  foodType: PropTypes.object,
+  calculatePortion: PropTypes.func,
+};

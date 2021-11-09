@@ -4,6 +4,7 @@ import PetsAdapter from "../../adapters/PetsAdapter";
 import DailyPortionForm from "../Forms/DailyPortionForm";
 import DailyPortionContainer from "../Pet/DailyPortionContainer";
 import MealContainer from "../Meal/MealContainer";
+import PortionsAdapter from "../../adapters/PortionsAdapter";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
@@ -22,12 +23,24 @@ export default class PetContainer extends React.Component {
         petData: data,
       });
     });
+
+    PortionsAdapter.getPetPortions(petId).then((data) => {
+      this.setState({
+        petPortionData: data,
+      });
+    });
   }
 
   componentWillReceiveProps(nextProps) {
     PetsAdapter.getPet(nextProps.petId).then((data) => {
       this.setState({
         petData: data,
+      });
+    });
+
+    PortionsAdapter.getPetPortions(nextProps.petId).then((data) => {
+      this.setState({
+        petPortionData: data,
       });
     });
   }
@@ -40,7 +53,7 @@ export default class PetContainer extends React.Component {
 
   render() {
     const { petId } = this.props;
-    const { petData } = this.state;
+    const { petData, petPortionData } = this.state;
 
     return (
       <React.Fragment>
@@ -68,7 +81,7 @@ export default class PetContainer extends React.Component {
           </TabPanel>
           <TabPanel> Calendar</TabPanel>
           <TabPanel>
-            <MealContainer petId={petId} />
+            <MealContainer petPortionData={petPortionData} petId={petId} />
           </TabPanel>
         </Tabs>
       </React.Fragment>

@@ -11,10 +11,10 @@ const DailyPortionData = ({
 
   const totalOunces = () => {
     if (category === "bone" && calculatedPortions) {
-      const newVal = ounces - calculatedPortions.boneContent;
+      const newVal = ounces - calculatedPortions.bone;
       return parseFloat(newVal.toFixed(2));
     } else if (category === "muscle" && calculatedPortions) {
-      const newVal = ounces - calculatedPortions.muscleContent;
+      const newVal = ounces - calculatedPortions.muscle;
       return parseFloat(newVal.toFixed(2));
     } else {
       return ounces;
