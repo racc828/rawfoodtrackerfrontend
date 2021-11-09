@@ -13,12 +13,12 @@ export default class MealContainer extends React.Component {
       dailyTotal: 38,
       calculatedPortions: {
         bone: 0,
-        muscle: 0,
-        liver: 0,
-        organ: 0,
-        nut: 0,
-        fruit: 0,
-        veggie: 0,
+        muscles: 0,
+        livers: 0,
+        organs: 0,
+        nuts: 0,
+        fruits: 0,
+        veggies: 0,
       },
     };
   }
@@ -32,13 +32,25 @@ export default class MealContainer extends React.Component {
   }
 
   calculatePortion = (portionData) => {
+    const { calculatedPortions } = this.state;
+    const { ounces } = portionData;
+    this.setState({
+      calculatedPortions: {
+        ...calculatedPortions,
+        [portionData.name]: (calculatedPortions[portionData.name] +=
+          parseInt(ounces)),
+      },
+    });
+  };
+
+  calculateRMBPortion = (portionData) => {
     const boneContent = (portionData.ounces * portionData.bone) / 100;
     const muscleContent = portionData.ounces - boneContent;
 
     this.setState({
       calculatedPortions: {
         bone: (this.state.calculatedPortions.bone += boneContent),
-        muscle: (this.state.calculatedPortions.muscle += muscleContent),
+        muscles: (this.state.calculatedPortions.muscle += muscleContent),
       },
     });
   };
@@ -57,6 +69,7 @@ export default class MealContainer extends React.Component {
                 foodData={foodData}
                 veggies={foodData.veggies}
                 calculatePortion={this.calculatePortion}
+                calculateRMBPortion={this.calculateRMBPortion}
               />
             )}
           </div>

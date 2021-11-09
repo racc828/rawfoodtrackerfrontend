@@ -38,11 +38,14 @@ export default class MealSubForm extends React.Component {
   };
 
   handleSubmitFoodType = (e) => {
-    const { addFoodType, name, calculatePortion } = this.props;
+    const { addFoodType, name, calculateRMBPortion, calculatePortion } =
+      this.props;
     const { foodType, ounces } = this.state;
     const formData = { ...foodType, ounces, categoryName: name };
     if (name === categoryTypes.bones) {
-      calculatePortion({ ounces, bone: foodType.bone });
+      calculateRMBPortion({ ounces, bone: foodType.bone });
+    } else {
+      calculatePortion({ ounces, name });
     }
     addFoodType(formData);
   };
@@ -108,5 +111,6 @@ export default class MealSubForm extends React.Component {
 MealSubForm.propTypes = {
   name: PropTypes.string,
   foodType: PropTypes.object,
+  calculateRMBPortion: PropTypes.func,
   calculatePortion: PropTypes.func,
 };
