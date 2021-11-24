@@ -42,6 +42,8 @@ export default class MealSubForm extends React.Component {
       this.props;
     const { foodType, ounces } = this.state;
     const formData = { ...foodType, ounces, categoryName: name };
+
+    debugger; // eslint-disable-line
     if (name === categoryTypes.bones) {
       calculateRMBPortion({ ounces, bone: foodType.bone });
     } else {
@@ -97,7 +99,7 @@ export default class MealSubForm extends React.Component {
               <Button
                 type="button"
                 onClick={this.handleSubmitFoodType}
-                className="button button-transparent"
+                className="button button-transparent pad-0"
                 icon="plus"
               />
             </div>

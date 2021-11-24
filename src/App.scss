@@ -131,6 +131,13 @@ nav {
 }
 
 .form {
+  &-error {
+    &-message {
+      color: $dark-red;
+      margin-top: -12px;
+      margin-bottom: 10px;
+    }
+  }
   &-control {
     background: $form-bg;
     display: block;
@@ -147,6 +154,10 @@ nav {
     appearance: none;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    &-error {
+      border-color: $dark-red;
+    }
   }
   &-select {
     background-image: linear-gradient(45deg, transparent 50%, gray 50%),

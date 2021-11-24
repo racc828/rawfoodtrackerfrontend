@@ -6,19 +6,21 @@ const Sidebar = ({ currentUser, setActivePet }) => {
   return (
     <div className="sidebar">
       <ul className="sidebar-nav">
-        {currentUser.pets.map((pet, i) => {
-          return (
-            <li className="sidebar-nav-item">
-              <Button
-                className="button button-transparent"
-                key={i}
-                id={pet.id}
-                onClick={setActivePet}
-                text={pet.name}
-              />
-            </li>
-          );
-        })}
+        {currentUser &&
+          currentUser.pets &&
+          currentUser.pets.map((pet, i) => {
+            return (
+              <li className="sidebar-nav-item">
+                <Button
+                  className="button button-transparent"
+                  key={i}
+                  id={pet.id}
+                  onClick={setActivePet}
+                  text={pet.name}
+                />
+              </li>
+            );
+          })}
       </ul>
     </div>
   );

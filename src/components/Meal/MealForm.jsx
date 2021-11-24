@@ -70,17 +70,19 @@ export default class MealForm extends React.Component {
                 />
               </div>
             </div>
-            {newData.map((data) => {
-              return (
-                <MealSubForm
-                  calculateRMBPortion={calculateRMBPortion}
-                  calculatePortion={calculatePortion}
-                  addFoodType={this.addFoodType}
-                  foodType={data.foodItems}
-                  name={data.name}
-                />
-              );
-            })}
+            <div className="col-12">
+              {newData.map((data) => {
+                return (
+                  <MealSubForm
+                    calculateRMBPortion={calculateRMBPortion}
+                    calculatePortion={calculatePortion}
+                    addFoodType={this.addFoodType}
+                    foodType={data.foodItems}
+                    name={data.name}
+                  />
+                );
+              })}
+            </div>
           </div>
           <Button
             type="submit"

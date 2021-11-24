@@ -44,13 +44,16 @@ export default class MealContainer extends React.Component {
   };
 
   calculateRMBPortion = (portionData) => {
+    const { calculatedPortions } = this.state;
+
     const boneContent = (portionData.ounces * portionData.bone) / 100;
     const muscleContent = portionData.ounces - boneContent;
 
     this.setState({
       calculatedPortions: {
+        ...calculatedPortions,
         bone: (this.state.calculatedPortions.bone += boneContent),
-        muscles: (this.state.calculatedPortions.muscle += muscleContent),
+        muscles: (this.state.calculatedPortions.muscles += muscleContent),
       },
     });
   };

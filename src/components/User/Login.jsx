@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "../Button/Button";
+import classNames from "classnames";
 export default class Login extends React.Component {
   constructor() {
     super();
@@ -27,6 +28,10 @@ export default class Login extends React.Component {
 
   render() {
     const { errorMessage } = this.props;
+    const inputClasses = classNames({
+      "form-control": true,
+      "form-control-error": errorMessage ? true : false,
+    });
     return (
       <form id="user-login" onSubmit={this.handleSubmit}>
         <h1>Login</h1>
@@ -36,7 +41,7 @@ export default class Login extends React.Component {
             <i class="bi bi-person-circle icon"></i>
           </span>
           <input
-            className="form-control"
+            className={inputClasses}
             type="text"
             placeholder="Username"
             onChange={this.handleChange}
@@ -51,7 +56,7 @@ export default class Login extends React.Component {
             <i class="bi bi-lock icon"></i>
           </span>
           <input
-            className="form-control"
+            className={inputClasses}
             type="password"
             placeholder="Password"
             onChange={this.handleChange}
@@ -61,6 +66,11 @@ export default class Login extends React.Component {
             required
           />
         </div>
+        {errorMessage && (
+          <div className="form-error-message">
+            <span> {errorMessage}</span>
+          </div>
+        )}
         <div className="row">
           <Button
             type="submit"
@@ -68,12 +78,6 @@ export default class Login extends React.Component {
             className="button button-primary"
           ></Button>
         </div>
-
-        {errorMessage && (
-          <div className="user-form-error">
-            <span> {errorMessage}</span>
-          </div>
-        )}
       </form>
     );
   }
