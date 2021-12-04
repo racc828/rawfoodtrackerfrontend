@@ -15,22 +15,22 @@ const DailyPortionData = ({
         const newVal = ounces - calculatedPortions.bone;
         return parseFloat(newVal.toFixed(2));
       } else if (category === "muscle") {
-        const newVal = ounces - calculatedPortions.muscles;
+        const newVal = ounces - calculatedPortions.muscle;
         return parseFloat(newVal.toFixed(2));
       } else if (category === "liver") {
-        const newVal = ounces - calculatedPortions.livers;
+        const newVal = ounces - calculatedPortions.liver;
         return parseFloat(newVal.toFixed(2));
       } else if (category === "fruit") {
-        const newVal = ounces - calculatedPortions.fruits;
+        const newVal = ounces - calculatedPortions.fruit;
         return parseFloat(newVal.toFixed(2));
       } else if (category === "organ") {
-        const newVal = ounces - calculatedPortions.organs;
+        const newVal = ounces - calculatedPortions.organ;
         return parseFloat(newVal.toFixed(2));
       } else if (category === "nut") {
-        const newVal = ounces - calculatedPortions.nuts;
+        const newVal = ounces - calculatedPortions.nut;
         return parseFloat(newVal.toFixed(2));
       } else if (category === "vegetable") {
-        const newVal = ounces - calculatedPortions.veggies;
+        const newVal = ounces - calculatedPortions.veggie;
         return parseFloat(newVal.toFixed(2));
       }
     } else {

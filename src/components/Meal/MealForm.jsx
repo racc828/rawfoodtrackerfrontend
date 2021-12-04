@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import Button from "../Button/Button";
 import MealSubForm from "./MealSubForm";
 import MealsAdapter from "../../adapters/MealsAdapter";
+import NewPotentialMeal from "./NewPotentialMeal";
+import { categoryTypes } from "../../global/js/constants";
 
 export default class MealForm extends React.Component {
   constructor() {
@@ -10,6 +12,7 @@ export default class MealForm extends React.Component {
     this.state = {
       name: "",
       foodTypes: [],
+      foodTypeCounter: 0,
     };
   }
 
@@ -22,8 +25,13 @@ export default class MealForm extends React.Component {
   };
 
   addFoodType = (foodData) => {
+    const foodDataUnique = {
+      ...foodData,
+      uniqueId: this.state.foodTypeCounter,
+    };
     this.setState({
-      foodTypes: [...this.state.foodTypes, foodData],
+      foodTypes: [...this.state.foodTypes, foodDataUnique],
+      foodTypeCounter: (this.state.foodTypeCounter += 1),
     });
   };
 
@@ -41,8 +49,42 @@ export default class MealForm extends React.Component {
     const { petId } = this.props;
     const newMealData = { ...state, petId };
     MealsAdapter.createMeal(newMealData).then((mealData) => {
-      // prettier-ignore
-      console.log(`%cconsolelog`, 'background: #FF1493; color: #fff; padding: 3px;'); // eslint-disable-line
+      if (mealData.error) {
+        alert("failure");
+      } else {
+        alert("success");
+      }
+    });
+  };
+
+  removeFoodTypeFromFoodTypes = (uniqueId) => {
+    const { foodTypes } = this.state;
+    return foodTypes.filter((foodType) => foodType.uniqueId !== uniqueId);
+  };
+
+  deleteMealPortionData = (uniqueId) => {
+    const { calculateRMBPortion, calculatePortion } = this.props;
+    const deleteFood = this.state.foodTypes.find(
+      (foodType) => foodType.uniqueId === uniqueId
+    );
+
+    if (deleteFood.categoryName === categoryTypes.bone) {
+      calculateRMBPortion({
+        bone: deleteFood.bone,
+        ounces: deleteFood.ounces,
+        removing: true,
+      });
+    } else {
+      calculatePortion({
+        ounces: deleteFood.ounces,
+        categoryName: deleteFood.categoryName,
+        removing: true,
+      });
+    }
+
+    const newFoodTypesArray = this.removeFoodTypeFromFoodTypes(uniqueId);
+    this.setState({
+      foodTypes: newFoodTypesArray,
     });
   };
 
@@ -83,20 +125,17 @@ export default class MealForm extends React.Component {
                 );
               })}
             </div>
+            <Button
+              type="submit"
+              text="Add"
+              className="button button-primary"
+            ></Button>
           </div>
-          <Button
-            type="submit"
-            text="Add"
-            className="button button-primary"
-          ></Button>
         </form>
-        {foodTypes.map((food) => {
-          return (
-            <div>
-              {food.name} {food.ounces}oz
-            </div>
-          );
-        })}
+        <NewPotentialMeal
+          foodTypes={foodTypes}
+          deleteMealPortionData={this.deleteMealPortionData}
+        />
       </React.Fragment>
     );
   }

@@ -1,9 +1,9 @@
 export const categoryTypes = {
-  livers: "livers",
-  organs: "organs",
-  muscles: "muscles",
-  bones: "bones",
-  fruits: "fruits",
-  nuts: "nut",
-  veggies: "veggies",
+  liver: "liver",
+  organ: "organ",
+  muscle: "muscle",
+  bone: "bone",
+  fruit: "fruit",
+  nut: "nut",
+  veggie: "veggie",
 };

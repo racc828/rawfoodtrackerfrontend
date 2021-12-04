@@ -27,7 +27,7 @@ export default class MealSubForm extends React.Component {
     let property = e.target.name;
     let value = e.target.value;
     const selectedOption = e.target.selectedOptions[0].text;
-    if (name === categoryTypes.bones) {
+    if (name === categoryTypes.bone) {
       const boneContent = e.target.selectedOptions[0].dataset.bone;
       this.setState({
         [property]: { id: value, name: selectedOption, bone: boneContent },
@@ -42,13 +42,14 @@ export default class MealSubForm extends React.Component {
   handleSubmitFoodType = (e) => {
     const { addFoodType, name, calculateRMBPortion, calculatePortion } =
       this.props;
+
     const { foodType, ounces } = this.state;
     const formData = { ...foodType, ounces, categoryName: name };
 
-    if (name === categoryTypes.bones) {
+    if (name === categoryTypes.bone) {
       calculateRMBPortion({ ounces, bone: foodType.bone });
     } else {
-      calculatePortion({ ounces, name });
+      calculatePortion({ ounces, name, categoryName: name });
     }
     addFoodType(formData);
 
@@ -123,7 +124,7 @@ export default class MealSubForm extends React.Component {
 
 MealSubForm.propTypes = {
   name: PropTypes.string,
-  foodType: PropTypes.object,
+  foodType: PropTypes.array,
   calculateRMBPortion: PropTypes.func,
   calculatePortion: PropTypes.func,
 };

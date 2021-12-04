@@ -12,12 +12,12 @@ export default class MealContainer extends React.Component {
       dailyTotal: 38,
       calculatedPortions: {
         bone: 0,
-        muscles: 0,
-        livers: 0,
-        organs: 0,
-        nuts: 0,
-        fruits: 0,
-        veggies: 0,
+        muscle: 0,
+        liver: 0,
+        organ: 0,
+        nut: 0,
+        fruit: 0,
+        veggie: 0,
       },
     };
   }
@@ -32,27 +32,50 @@ export default class MealContainer extends React.Component {
 
   calculatePortion = (portionData) => {
     const { calculatedPortions } = this.state;
-    const { ounces } = portionData;
+    const { ounces, removing } = portionData;
+
+    let calculatedPortion;
+
+    if (removing) {
+      calculatedPortion = calculatedPortions[portionData.categoryName] -=
+        parseInt(ounces);
+    } else {
+      calculatedPortion = calculatedPortions[portionData.categoryName] +=
+        parseInt(ounces);
+    }
+
     this.setState({
       calculatedPortions: {
         ...calculatedPortions,
-        [portionData.name]: (calculatedPortions[portionData.name] +=
-          parseInt(ounces)),
+        [portionData.categoryName]: calculatedPortion,
       },
     });
   };
 
   calculateRMBPortion = (portionData) => {
     const { calculatedPortions } = this.state;
+    const { ounces, bone, removing } = portionData;
 
-    const boneContent = (portionData.ounces * portionData.bone) / 100;
-    const muscleContent = portionData.ounces - boneContent;
+    let boneContent = (ounces * bone) / 100;
+    let muscleContent = ounces - boneContent;
+
+    let calculatedBoneContent, calculatedMuscleContent;
+
+    if (removing) {
+      calculatedBoneContent = this.state.calculatedPortions.bone -= boneContent;
+      calculatedMuscleContent = this.state.calculatedPortions.muscle -=
+        muscleContent;
+    } else {
+      calculatedBoneContent = this.state.calculatedPortions.bone += boneContent;
+      calculatedMuscleContent = this.state.calculatedPortions.muscle +=
+        muscleContent;
+    }
 
     this.setState({
       calculatedPortions: {
         ...calculatedPortions,
-        bone: (this.state.calculatedPortions.bone += boneContent),
-        muscles: (this.state.calculatedPortions.muscles += muscleContent),
+        bone: calculatedBoneContent,
+        muscle: calculatedMuscleContent,
       },
     });
   };
