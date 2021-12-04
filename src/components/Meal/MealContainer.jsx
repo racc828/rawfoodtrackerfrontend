@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import MealsAdapter from "../../adapters/MealsAdapter";
 import MealForm from "./MealForm";
-import DailyPortionData from "../Pet/DailyPortionData";
-
+import DailyPortionContainer from "../Pet/DailyPortionContainer";
 import "react-tabs/style/react-tabs.css";
 
 export default class MealContainer extends React.Component {
@@ -77,28 +76,11 @@ export default class MealContainer extends React.Component {
             )}
           </div>
           <div className="col-md-6">
-            <div className="card mb-4">
-              <div className="card-body">
-                <ul class="list-group list-group-flush">
-                  {petPortionData &&
-                    Object.entries(petPortionData).map(([key, value], i) => {
-                      if (key.includes("at") || key.includes("id")) {
-                        return null;
-                      } else {
-                        return (
-                          <DailyPortionData
-                            calculatedPortions={calculatedPortions}
-                            key={i}
-                            dailyTotal={dailyTotal}
-                            category={key}
-                            percentage={value}
-                          />
-                        );
-                      }
-                    })}
-                </ul>
-              </div>
-            </div>
+            <DailyPortionContainer
+              petPortionData={petPortionData}
+              calculatedPortions={calculatedPortions}
+              dailyTotal={dailyTotal}
+            />
           </div>
         </div>
       </React.Fragment>
@@ -108,5 +90,6 @@ export default class MealContainer extends React.Component {
 
 MealContainer.propTypes = {
   petId: PropTypes.string,
-  petPortionData: PropTypes.object,
+  calculatedPortions: PropTypes.object,
+  dailyTotal: PropTypes.object,
 };

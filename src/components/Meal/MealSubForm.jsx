@@ -7,7 +7,9 @@ export default class MealSubForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      foodType: {},
+      foodType: {
+        id: "0",
+      },
       ounces: "",
     };
   }
@@ -43,17 +45,24 @@ export default class MealSubForm extends React.Component {
     const { foodType, ounces } = this.state;
     const formData = { ...foodType, ounces, categoryName: name };
 
-    debugger; // eslint-disable-line
     if (name === categoryTypes.bones) {
       calculateRMBPortion({ ounces, bone: foodType.bone });
     } else {
       calculatePortion({ ounces, name });
     }
     addFoodType(formData);
+
+    this.setState({
+      ounces: "",
+      foodType: {
+        id: "0",
+      },
+    });
   };
 
   render() {
     const { foodType, name } = this.props;
+    const { ounces } = this.state;
 
     return (
       <React.Fragment>
@@ -66,13 +75,14 @@ export default class MealSubForm extends React.Component {
                   name="foodType"
                   id="foodType"
                   onChange={this.handleChangeSelect}
+                  value={this.state.foodType.id}
                 >
-                  <option> Select {name}</option>
+                  <option value="0"> Select {name}</option>
                   {foodType.map((food) => {
                     if (food.bone_content) {
                       return (
                         <option value={food.id} data-bone={food.bone_content}>
-                          {food.name}
+                          {food.name} - {food.bone_content}%
                         </option>
                       );
                     } else {
@@ -91,6 +101,7 @@ export default class MealSubForm extends React.Component {
                   name="ounces"
                   label="ounces"
                   placeholder="Ounces"
+                  value={ounces}
                   required
                 />
               </div>
