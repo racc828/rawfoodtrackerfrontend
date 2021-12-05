@@ -58,9 +58,7 @@ Header.propTypes = {
   admin: PropTypes.bool,
   toggleProteinForm: PropTypes.func,
   logOut: PropTypes.func,
-  toggleBoneForm: PropTypes.func,
   togglePetForm: PropTypes.func,
-  toggleOrganForm: PropTypes.func,
-  toggleMuscleForm: PropTypes.func,
-  toggleLiverForm: PropTypes.func,
+  activeCategories: PropTypes.array,
+  setActiveCategoryForm: Proptypes.func,
 };

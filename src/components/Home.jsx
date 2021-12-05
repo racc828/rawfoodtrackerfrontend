@@ -1,4 +1,4 @@
-import React, { Components } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import ProteinForm from "./Forms/ProteinForm";
 import BoneForm from "./Forms/BoneForm";
