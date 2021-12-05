@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Components } from "react";
 import PropTypes from "prop-types";
 import ProteinForm from "./Forms/ProteinForm";
 import BoneForm from "./Forms/BoneForm";
@@ -21,12 +21,10 @@ export default class Home extends React.Component {
           ? true
           : false,
       displayProteinForm: false,
-      displayBoneForm: false,
       activePet: null,
       displayPetForm: false,
-      displayLiverForm: false,
-      displayOrganForm: false,
-      displayMuscleForm: false,
+      activeCategoryForm: null,
+      activeCategories: ["liver", "organ", "bone", "muscle"],
     };
   }
 
@@ -37,34 +35,6 @@ export default class Home extends React.Component {
     });
   };
 
-  toggleBoneForm = () => {
-    const { displayBoneForm } = this.state;
-    this.setState({
-      displayBoneForm: !displayBoneForm,
-    });
-  };
-
-  toggleLiverForm = () => {
-    const { displayLiverForm } = this.state;
-    this.setState({
-      displayLiverForm: !displayLiverForm,
-    });
-  };
-
-  toggleOrganForm = () => {
-    const { displayOrganForm } = this.state;
-    this.setState({
-      displayOrganForm: !displayOrganForm,
-    });
-  };
-
-  toggleMuscleForm = () => {
-    const { displayMuscleForm } = this.state;
-    this.setState({
-      displayMuscleForm: !displayMuscleForm,
-    });
-  };
-
   togglePetForm = () => {
     const { displayPetForm } = this.state;
     this.setState({
@@ -72,15 +42,26 @@ export default class Home extends React.Component {
     });
   };
 
+  setActiveCategoryForm = (e) => {
+    const { activeCategoryForm } = this.state;
+
+    if (activeCategoryForm === e.target.innerText) {
+      this.setState({
+        activeCategoryForm: null,
+      });
+    } else {
+      this.setState({
+        activeCategoryForm: e.target.innerText,
+      });
+    }
+  };
+
   setActivePet = (e) => {
     this.setState({
       activePet: e.target.dataset.id,
-      displayBoneForm: false,
       displayPetForm: false,
       displayProteinForm: false,
-      displayLiverForm: false,
-      displayMuscleForm: false,
-      displayOrganForm: false,
+      activeCategoryForm: "",
     });
   };
 
@@ -89,13 +70,23 @@ export default class Home extends React.Component {
     const {
       admin,
       displayProteinForm,
-      displayBoneForm,
       activePet,
       displayPetForm,
-      displayLiverForm,
-      displayMuscleForm,
-      displayOrganForm,
+      activeCategories,
+      activeCategoryForm,
     } = this.state;
+
+    const components = {
+      liver: LiverForm,
+      organ: OrganForm,
+      muscle: MuscleForm,
+      bone: BoneForm,
+    };
+
+    const CategoryForm = activeCategoryForm
+      ? components[activeCategoryForm]
+      : null;
+
     return (
       <div className="root">
         <Sidebar currentUser={currentUser} setActivePet={this.setActivePet} />
@@ -106,11 +97,10 @@ export default class Home extends React.Component {
             admin={admin}
             logOut={logOut}
             toggleProteinForm={this.toggleProteinForm}
-            toggleBoneForm={this.toggleBoneForm}
             togglePetForm={this.togglePetForm}
-            toggleLiverForm={this.toggleLiverForm}
-            toggleMuscleForm={this.toggleMuscleForm}
-            toggleOrganForm={this.toggleOrganForm}
+            activeCategories={activeCategories}
+            activeCategoryForm={activeCategoryForm}
+            setActiveCategoryForm={this.setActiveCategoryForm}
           />
           <div className="container">
             <div className="row">
@@ -124,46 +114,6 @@ export default class Home extends React.Component {
                 </div>
               )}
 
-              {displayBoneForm && (
-                <div className="col-md-6">
-                  <div className="card">
-                    <div className="card-body">
-                      <BoneForm />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {displayLiverForm && (
-                <div className="col-md-6">
-                  <div className="card">
-                    <div className="card-body">
-                      <LiverForm />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {displayOrganForm && (
-                <div className="col-md-6">
-                  <div className="card">
-                    <div className="card-body">
-                      <OrganForm />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {displayMuscleForm && (
-                <div className="col-md-6">
-                  <div className="card">
-                    <div className="card-body">
-                      <MuscleForm />
-                    </div>
-                  </div>
-                </div>
-              )}
-
               {displayPetForm && (
                 <div className="col-md-6">
                   <div className="card">
@@ -172,6 +122,16 @@ export default class Home extends React.Component {
                         userId={currentUser.id}
                         handleAddPet={handleAddPet}
                       />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeCategoryForm && (
+                <div className="col-md-6">
+                  <div className="card">
+                    <div className="card-body">
+                      <CategoryForm />
                     </div>
                   </div>
                 </div>

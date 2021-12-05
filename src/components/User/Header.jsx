@@ -8,11 +8,9 @@ const Header = ({
   admin,
   toggleProteinForm,
   logOut,
-  toggleBoneForm,
   togglePetForm,
-  toggleLiverForm,
-  toggleOrganForm,
-  toggleMuscleForm,
+  activeCategories,
+  setActiveCategoryForm,
 }) => {
   return (
     <header className="header mb-4">
@@ -26,26 +24,15 @@ const Header = ({
                 onClick={toggleProteinForm}
                 className="button button-transparent"
               ></Button>
-              <Button
-                text="Add Raw Meaty Bone"
-                onClick={toggleBoneForm}
-                className="button button-transparent"
-              ></Button>
-              <Button
-                text="Add Liver"
-                onClick={toggleLiverForm}
-                className="button button-transparent"
-              ></Button>
-              <Button
-                text="Add Organ"
-                onClick={toggleOrganForm}
-                className="button button-transparent"
-              ></Button>
-              <Button
-                text="Add Muscle"
-                onClick={toggleMuscleForm}
-                className="button button-transparent"
-              ></Button>
+              {activeCategories.map((category) => {
+                return (
+                  <Button
+                    text={category}
+                    onClick={setActiveCategoryForm}
+                    className="button button-transparent"
+                  ></Button>
+                );
+              })}
             </React.Fragment>
           )}
           <Button
