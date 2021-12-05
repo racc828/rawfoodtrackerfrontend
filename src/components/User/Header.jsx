@@ -20,7 +20,7 @@ const Header = ({
           {admin && (
             <React.Fragment>
               <Button
-                text="Add Protein"
+                text="protein"
                 onClick={toggleProteinForm}
                 className="button button-transparent"
               ></Button>
@@ -36,7 +36,7 @@ const Header = ({
             </React.Fragment>
           )}
           <Button
-            text="Add Pet"
+            text="pet"
             onClick={togglePetForm}
             className="button button-transparent"
           ></Button>
@@ -60,5 +60,5 @@ Header.propTypes = {
   logOut: PropTypes.func,
   togglePetForm: PropTypes.func,
   activeCategories: PropTypes.array,
-  setActiveCategoryForm: Proptypes.func,
+  setActiveCategoryForm: PropTypes.func,
 };

@@ -30,4 +30,8 @@
     color: $light-blue;
     border: none;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
