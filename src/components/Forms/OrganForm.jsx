@@ -42,11 +42,11 @@ export default class OrganForm extends React.Component {
         alert("failure");
       } else {
         alert("success");
+        this.setState({
+          protein_id: "",
+          name: "",
+        });
       }
-      this.setState({
-        protein_id: "",
-        name: "",
-      });
     });
   };
 
