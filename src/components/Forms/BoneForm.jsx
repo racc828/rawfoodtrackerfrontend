@@ -46,12 +46,18 @@ export default class BoneForm extends React.Component {
         alert("failure");
       } else {
         alert("success");
+        this.setState({
+          protein_id: "",
+          name: "",
+          bone: null,
+          muscle: null,
+        });
       }
     });
   };
 
   render() {
-    const { proteins } = this.state;
+    const { proteins, bone, muscle, protein_id, name } = this.state;
     return (
       <form id="raw-meaty-bone-form" onSubmit={this.handleSubmit}>
         <h1>Add Raw Meaty Bone</h1>
@@ -65,6 +71,7 @@ export default class BoneForm extends React.Component {
             label="name"
             placeholder="name"
             required
+            value={name}
           />
         </div>
         <div className="input-group mb-3">
@@ -76,6 +83,7 @@ export default class BoneForm extends React.Component {
             label="muscle"
             placeholder="muscle"
             required
+            value={muscle}
           />
         </div>
         <div className="input-group mb-3">
@@ -87,6 +95,7 @@ export default class BoneForm extends React.Component {
             label="bone"
             placeholder="bone"
             required
+            value={bone}
           />
         </div>
         <div className="input-group mb-4">
@@ -95,6 +104,7 @@ export default class BoneForm extends React.Component {
             name="protein_id"
             id="protein_id"
             onChange={this.handleChange}
+            value={protein_id}
           >
             <option> Select a name</option>
             {proteins.map((protein) => {
