@@ -6,6 +6,8 @@ export default class SessionsAdapter {
   static getUser(user) {
     const endpoint = currentRoute.endpoints.signIn();
 
+    debugger; // eslint-disable-line
+
     return fetch(endpoint.url, {
       method: endpoint.method,
       headers: endpoint.headers,

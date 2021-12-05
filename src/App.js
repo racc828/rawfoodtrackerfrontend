@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import User from "./components/User/User";
+import UserLogin from "./components/User/UserLogin";
+import UserSignup from "./components/User/UserSignup";
 import SessionsAdapter from "./adapters/SessionsAdapter";
 import PetsAdapter from "./adapters/PetsAdapter";
 import UsersAdapter from "./adapters/UsersAdapter";
@@ -8,8 +9,14 @@ import Home from "./components/Home";
 import "./App.scss";
 import "./global/css/grid.scss";
 import "./global/css/helpers.scss";
+import PropTypes from "prop-types";
+import { Redirect } from "react-router";
 
 class App extends Component {
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
   constructor() {
     super();
     this.state = {
@@ -26,6 +33,10 @@ class App extends Component {
     });
   }
 
+  redirectHome = () => {
+    return <Redirect to="/" />;
+  };
+
   getUser = (user) => {
     return SessionsAdapter.getUser(user).then((userData) => {
       if (userData.error) {
@@ -39,6 +50,7 @@ class App extends Component {
           errorMessage: null,
         });
         localStorage.setItem("token", userData.jwt);
+        this.redirectHome();
       }
     });
   };
@@ -56,6 +68,7 @@ class App extends Component {
           errorMessage: null,
         });
         localStorage.setItem("token", userData.jwt);
+        this.redirectHome();
       }
     });
   };
@@ -99,11 +112,18 @@ class App extends Component {
   renderLogin = () => {
     const { errorMessage } = this.state;
     return (
-      <User
+      <UserLogin
         errorMessage={errorMessage}
         getUser={this.getUser}
         createUser={this.createUser}
       />
+    );
+  };
+
+  renderUserSignup = () => {
+    const { errorMessage } = this.state;
+    return (
+      <UserSignup errorMessage={errorMessage} createUser={this.createUser} />
     );
   };
 
@@ -117,6 +137,8 @@ class App extends Component {
         ) : (
           <Route exact path="/" render={this.renderLogin} />
         )}
+        <Route exact path="/login" render={this.renderLogin} />
+        <Route exact path="/signup" render={this.renderUserSignup} />
       </div>
     );
   }

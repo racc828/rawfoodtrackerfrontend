@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "../Button/Button";
+import Link from "../Link/Link";
 
 export default class SignUp extends React.Component {
   constructor() {
@@ -30,15 +31,15 @@ export default class SignUp extends React.Component {
   };
 
   render() {
-    const { errorMessage, toggleSignUp } = this.props;
+    const { errorMessage } = this.props;
 
     return (
       <form id="sign-up" onSubmit={this.handleSubmit}>
-        <Button
-          text="Back"
+        <Link
+          text="Sign Up"
+          className="button button-transparent"
+          href="/login"
           icon="arrow-left"
-          onClick={toggleSignUp}
-          className="button button-transparent pad-0"
         />
         <h1>Register</h1>
 
