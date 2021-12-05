@@ -9,14 +9,9 @@ import Home from "./components/Home";
 import "./App.scss";
 import "./global/css/grid.scss";
 import "./global/css/helpers.scss";
-import PropTypes from "prop-types";
 import { Redirect } from "react-router";
 
 class App extends Component {
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   constructor() {
     super();
     this.state = {
