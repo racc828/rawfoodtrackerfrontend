@@ -43,11 +43,15 @@ export default class MuscleForm extends React.Component {
       } else {
         alert("success");
       }
+      this.setState({
+        protein_id: "",
+        name: "",
+      });
     });
   };
 
   render() {
-    const { proteins } = this.state;
+    const { proteins, protein_id, name } = this.state;
     return (
       <form id="liver-form" onSubmit={this.handleSubmit}>
         <h1>Add Muscle</h1>
@@ -61,6 +65,7 @@ export default class MuscleForm extends React.Component {
             label="name"
             placeholder="name"
             required
+            value={name}
           />
         </div>
 
@@ -70,6 +75,7 @@ export default class MuscleForm extends React.Component {
             name="protein_id"
             id="protein_id"
             onChange={this.handleChange}
+            value={protein_id}
           >
             <option> Select a name</option>
             {proteins.map((protein) => {

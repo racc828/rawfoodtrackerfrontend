@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import PetsAdapter from "../../adapters/PetsAdapter";
 import DailyPortionForm from "../Forms/DailyPortionForm";
-import DailyPortionContainer from "../Pet/DailyPortionContainer";
 import MealContainer from "../Meal/MealContainer";
+import MealsContainer from "../Meal/MealsContainer";
 import PortionsAdapter from "../../adapters/PortionsAdapter";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -59,9 +59,9 @@ export default class PetContainer extends React.Component {
       <React.Fragment>
         <Tabs>
           <TabList>
-            <Tab>Daily Portions</Tab>
-            <Tab>Raw Meaty Bones</Tab>
+            <Tab>Daily Portions Form</Tab>
             <Tab>Calendar</Tab>
+            <Tab>Meal Form</Tab>
             <Tab>Meals</Tab>
           </TabList>
 
@@ -74,14 +74,12 @@ export default class PetContainer extends React.Component {
               </div>
             )}
           </TabPanel>
-          <TabPanel>
-            {petData && petData.hasPortion && (
-              <DailyPortionContainer petId={petId} />
-            )}
-          </TabPanel>
           <TabPanel> Calendar</TabPanel>
           <TabPanel>
             <MealContainer petPortionData={petPortionData} petId={petId} />
+          </TabPanel>
+          <TabPanel>
+            <MealsContainer petId={petId} />
           </TabPanel>
         </Tabs>
       </React.Fragment>

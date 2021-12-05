@@ -128,6 +128,11 @@ export const routes = {
         method: methods.POST,
         headers,
       }),
+      getPetMeals: () => ({
+        url: `${rootUrl}/meals`,
+        method: methods.POST,
+        headers,
+      }),
     },
   },
   [apis.Veggies]: {
